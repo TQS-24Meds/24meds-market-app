@@ -8,7 +8,6 @@ class MarketApplicationTests {
 
 	@Test
 	void contextLoads() {
-		System.out.println("gatisse");
 	}
 
 }
