@@ -24,7 +24,7 @@
   --white: #fff;
   --gray: #6c757d;
   --gray-dark: #343a40;
-  --primary: #007bff;
+  --primary: #29873C; 
   --secondary: #6c757d;
   --success: #28a745;
   --info: #17a2b8;
@@ -2582,40 +2582,40 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #29873C;
+  border-color: #29873C;
   box-shadow: none;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #0069d9;
-  border-color: #0062cc;
+  background-color: #20532a;
+  border-color: #1d4d26;
 }
 
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
-  background-color: #0069d9;
-  border-color: #0062cc;
-  box-shadow: 0 0 0 0 rgba(38, 143, 255, 0.5);
+  background-color: #29873C;
+  border-color: #29873C;
+  box-shadow: 0 0 0 0 #29873C
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #29873C;
+  border-color: #29873C;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #0062cc;
-  border-color: #005cbf;
+  background-color: #29873C;
+  border-color: #29873C;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0 rgba(38, 143, 255, 0.5);
+  box-shadow: 0 0 0 0 #29873C;
 }
 
 .btn-secondary {
@@ -26660,26 +26660,27 @@ body.text-sm .input-group-text {
 }
 
 .card-primary:not(.card-outline) > .card-header a.active {
-  color: #1f2d3d;
+  color: #29873C;
 }
 
 .card-primary.card-outline {
-  border-top: 3px solid #007bff;
+  border-top: 3px solid #29873C;
 }
 
 .card-primary.card-outline-tabs > .card-header a:hover {
-  border-top: 3px solid #dee2e6;
+  border-top: 3px solid #29873C;
 }
 
 .card-primary.card-outline-tabs > .card-header a.active,
 .card-primary.card-outline-tabs > .card-header a.active:hover {
-  border-top: 3px solid #007bff;
+  border-top: 3px solid #29873C;
 }
 
 .bg-primary > .card-header .btn-tool,
 .bg-gradient-primary > .card-header .btn-tool,
 .card-primary:not(.card-outline) > .card-header .btn-tool {
-  color: rgba(255, 255, 255, 0.8);
+  color: #29873C;
+  
 }
 
 .bg-primary > .card-header .btn-tool:hover,
@@ -26705,7 +26706,7 @@ body.text-sm .input-group-text {
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.hour:hover,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.minute:hover,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.second:hover {
-  background-color: #0067d6;
+  background-color: #29873C;
   color: #fff;
 }
 
@@ -26718,12 +26719,12 @@ body.text-sm .input-group-text {
 .card.bg-primary .bootstrap-datetimepicker-widget table td.active:hover,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.active,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.active:hover {
-  background-color: #3395ff;
+  background-color: #29873C;
   color: #fff;
 }
 
 .card-secondary:not(.card-outline) > .card-header {
-  background-color: #6c757d;
+  background-color: #29873C;
 }
 
 .card-secondary:not(.card-outline) > .card-header,
@@ -26745,13 +26746,13 @@ body.text-sm .input-group-text {
 
 .card-secondary.card-outline-tabs > .card-header a.active,
 .card-secondary.card-outline-tabs > .card-header a.active:hover {
-  border-top: 3px solid #6c757d;
+  border-top: 3px solid #29873C;
 }
 
 .bg-secondary > .card-header .btn-tool,
 .bg-gradient-secondary > .card-header .btn-tool,
 .card-secondary:not(.card-outline) > .card-header .btn-tool {
-  color: rgba(255, 255, 255, 0.8);
+  color: #29873C;
 }
 
 .bg-secondary > .card-header .btn-tool:hover,
@@ -26795,7 +26796,7 @@ body.text-sm .input-group-text {
 }
 
 .card-success:not(.card-outline) > .card-header {
-  background-color: #28a745;
+  background-color: #29873C;
 }
 
 .card-success:not(.card-outline) > .card-header,
