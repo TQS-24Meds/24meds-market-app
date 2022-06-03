@@ -20,14 +20,9 @@ public class Order {
     @Column(name = "id_order")
     private int id;
 
-    @Column(name = "name", nullable = false)
-    private String name; 
-
-    @Column(name = "description", nullable = false)
-    private String description;
-    
-    @Column(name = "photo", nullable = false)
-    private String photo;
+    @ManyToOne
+    @JoinColumn(name = "id_client", nullable = false)
+    private int id_client; 
 
     @Column(name = "price", nullable = false)
     private float price;
