@@ -36,6 +36,7 @@ public class Product {
     private String brand;
 
     @Column(name = "tags", nullable = false)
+    @ElementCollection(targetClass=String.class)
     private List<String> tags;
 
 }

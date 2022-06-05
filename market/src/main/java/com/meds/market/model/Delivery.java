@@ -25,10 +25,12 @@ public class Delivery {
     private int id;
 
     @Column(name = "products")
+    @ElementCollection(targetClass=Product.class)
     private List<Product> products;
 
-    @Column(name = "client_lat", nullable = false)
-    private float client_lat; 
+    @Column(name = "client", nullable = false)
+    private Client client;
+     
 
     @Column(name = "client_long", nullable = false)
     private float client_long; 

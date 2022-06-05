@@ -22,7 +22,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "id_client", nullable = false)
-    private int id_client; 
+    private Client client; 
 
     @Column(name = "price", nullable = false)
     private float price;
@@ -31,6 +31,9 @@ public class Order {
     private String brand;
 
     @Column(name = "tags", nullable = false)
+    @ElementCollection(targetClass=String.class)
     private List<String> tags;
+
+
 
 }
