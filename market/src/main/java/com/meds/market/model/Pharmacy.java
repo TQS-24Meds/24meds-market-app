@@ -1,5 +1,7 @@
 package com.meds.market.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 import lombok.*;
@@ -29,6 +31,9 @@ public class Pharmacy {
 
     @Column(name = "longitude", nullable = false)
     private double longitude;    
-
+    
+    @Column(name = "products", nullable = false)
+    @ElementCollection(targetClass=String.class)
+    private List<String> tags;
 
 }

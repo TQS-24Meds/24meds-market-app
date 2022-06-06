@@ -18,6 +18,9 @@ import lombok.*;
 @ToString
 @Table(name = "delivery")
 public class Delivery {
+
+    private Client client;
+
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -28,22 +31,11 @@ public class Delivery {
     @ElementCollection(targetClass=Product.class)
     private List<Product> products;
 
-    @Column(name = "client", nullable = false)
-    private Client client;
      
-
-    @Column(name = "client_long", nullable = false)
-    private float client_long; 
-
-    @Column(name = "client_addr", nullable = false)
-    private String client_addr;    
-
     @CreationTimestamp
     @Column(name = "timestamp")
     private Timestamp timestamp; // gives us the rider's pickup time at the store?
 
-    @Column(name = "price", nullable = false)
-    private float price;
 
     @Column(name = "order_id", nullable = false)
     private int order_id;

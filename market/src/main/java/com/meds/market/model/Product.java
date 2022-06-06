@@ -22,6 +22,9 @@ public class Product {
 
     @Column(name = "name", nullable = false)
     private String name; 
+    
+    @Column(name = "pharmacyid", nullable = false)
+    private int pharmacyid; 
 
     @Column(name = "description", nullable = false)
     private String description;
