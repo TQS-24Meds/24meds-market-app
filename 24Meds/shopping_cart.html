@@ -72,9 +72,9 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Main content -->
-    <section class="content">
+    <section class="content-header">
       <div class="container-fluid" style=" display: flex;justify-content: center;">
-        <div class="basket">
+        <div class="basket row mb-2">
           <div class="mt-5"> 
             <h2>Shopping Cart</h2>
           </div> 
@@ -92,8 +92,8 @@
                 <img src="dist/img/paracetamol.png"alt="Placholder Image 2" class="product-frame">
               </div>
               <div class="product-details">
-                <h5><strong><span class="item-quantity">4x</span> Paracetamol </strong> 20 mg</h5>
-                <p>Product Code - 232321939</p>
+                <h5><strong><span class="item-quantity">4x</span> Paracetamol </strong><p style="font-size: 16px"> 20 mg</p></h5>
+                <p style="font-size: 13px">Product Code - 232321939</p>
               </div>
             </div>
             <div class="price">6</div>
@@ -102,7 +102,7 @@
             </div>
             <div class="subtotal">24.00</div>
             <div class="remove">
-              <button>Remove</button>
+              <a type="submit" class="btn btn-danger" onClick="" value="REMOVE" >Remove</a>
             </div>
           </div>
           <div class="basket-product">
@@ -111,8 +111,8 @@
                 <img src="dist/img/paracetamol.png"alt="Placholder Image 2" class="product-frame">
               </div>
               <div class="product-details">
-                <h5><strong><span class="item-quantity">1x</span> Brufen</strong> 20 mg</h5>
-                <p>Product Code - 232321939</p>
+                <h5><strong><span class="item-quantity">1x</span> Brufen</strong><p style="font-size: 16px"> 20 mg</p></h5>
+                <p style="font-size: 13px">Product Code - 232321939</p>
               </div>
             </div>
             <div class="price">6</div>
@@ -121,25 +121,24 @@
             </div>
             <div class="subtotal">6.00</div>
             <div class="remove">
-              <button>Remove</button>
+              <a type="submit" class="btn btn-danger" onClick="" value="REMOVE" >Remove</a>
             </div>
           </div>
-          
         </div>
+
         <aside>
-          <div class="summary mt-5">
-            <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
+          <div class="summary mt-5" style="top: 85px; position: absolute">
+            <div class="summary-total-items"><span class="total-items"></span>Items in your Cart</div>
 
             <div class="summary-total">
               <div class="total-title">Total</div>
               <div class="total-value final-value" id="basket-total">30.00</div>
             </div>
-            <a href="confirm_order.html">
-            <div class="summary-checkout">
-                <button class="checkout-cta" >Confirm Purchase
-                </button>
-              </div>
-            </a>
+            <div>
+              <a href="confirm_order.html">
+                <button class="checkout-cta" style="background-color: #29873C; color: #ffffff;" type="submit" class="btn ">Confirm Purchase</button>
+              </a>
+            </div>
           </div>
         </aside>
 
