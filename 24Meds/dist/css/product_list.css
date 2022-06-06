@@ -156,7 +156,6 @@ ul {
 li {
   color: #111;
   display: inline-block;
-  padding: 0.625rem 0;
 }
 
 li.price:before,
@@ -238,9 +237,8 @@ li.subtotal:before {
 }
 
 aside {
-  float: right;
-  position: relative;
-  width: 30%;
+  display: inline-block;
+  width: 25%;
 }
 
 .summary {
