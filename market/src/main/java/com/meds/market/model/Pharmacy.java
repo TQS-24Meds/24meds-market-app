@@ -33,7 +33,7 @@ public class Pharmacy {
     private double longitude;    
     
     @Column(name = "products", nullable = false)
-    @ElementCollection(targetClass=String.class)
-    private List<String> tags;
+    @ElementCollection(targetClass=Product.class)
+    private List<Product> products;
 
 }

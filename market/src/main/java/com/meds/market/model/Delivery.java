@@ -1,6 +1,7 @@
 package com.meds.market.model;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.*;
@@ -21,26 +22,21 @@ public class Delivery {
 
     private Client client;
 
-    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_delivery")
     private int id;
+    
+    @OneToOne               // I'm not sure if this is alright, please check
+    @JoinColumn(name = "products_list", nullable = false)
+    private HashMap<Product, Double> product_list;
 
-    @Column(name = "products")
-    @ElementCollection(targetClass=Product.class)
-    private List<Product> products;
-
-     
     @CreationTimestamp
     @Column(name = "timestamp")
     private Timestamp timestamp; // gives us the rider's pickup time at the store?
 
-
-    @Column(name = "order_id", nullable = false)
+    @OneToOne           // Not sure if this relation is right aswell
+    @JoinColumn(name = "order_id", nullable = false)
     private int order_id;
-
-    @Column(name = "store_id", nullable = false)
-    private int store_id;
 
 }
