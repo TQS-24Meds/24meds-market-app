@@ -20,9 +20,11 @@ public class Client extends Person {
     @Column(name = "id_client")
     private int id_client;
 
-    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "client", orphanRemoval = true)
+    @ManyToMany
+    @JoinTable(name = "cart", joinColumns = @JoinColumn(name = "id_client"),
+    inverseJoinColumns = @JoinColumn(name = "id_cart"))
     @JsonIgnore
-    private Set<Cart> cart;
+    private Set<Product> cart;
 
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "client", orphanRemoval = true)
     @JsonIgnore
