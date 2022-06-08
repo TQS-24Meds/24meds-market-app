@@ -1,6 +1,7 @@
 package com.meds.market.model;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -38,7 +39,7 @@ public class Delivery {
 
     @CreationTimestamp
     @Column(name = "timestamp")
-    private Timestamp timestamp; // gives us the rider's pickup time at the store?
+    private Date timestamp; // gives us the rider's pickup time at the store?
 
     @Column(name = "price", nullable = false)
     private float price;
@@ -48,5 +49,18 @@ public class Delivery {
 
     @Column(name = "store_id", nullable = false)
     private int store_id;
+
+
+    public Delivery(float client_lat, float client_long, String client_addr, Date timestamp, float price, int order_id, int store_id) {
+        this.products = new ArrayList<>();
+        this.client_lat = client_lat;
+        this.client_long = client_long;
+        this.client_addr = client_addr;
+        this.timestamp = timestamp;
+        this.price = price;
+        this.order_id = order_id;
+        this.store_id = store_id;
+    }
+
 
 }

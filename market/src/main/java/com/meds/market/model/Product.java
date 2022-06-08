@@ -1,5 +1,6 @@
 package com.meds.market.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -37,5 +38,15 @@ public class Product {
 
     @Column(name = "tags", nullable = false)
     private List<String> tags;
+
+
+    public Product(String name, String description, String photo, float price, String brand) {
+        this.name = name;
+        this.description = description;
+        this.photo = photo;
+        this.price = price;
+        this.brand = brand;
+        this.tags = new ArrayList<>();
+    }
 
 }

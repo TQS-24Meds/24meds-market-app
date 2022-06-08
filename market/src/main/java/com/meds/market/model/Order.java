@@ -1,5 +1,6 @@
 package com.meds.market.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -22,7 +23,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "id_client", nullable = false)
-    private int id_client; 
+    private Client client; 
 
     @Column(name = "price", nullable = false)
     private float price;
@@ -32,5 +33,13 @@ public class Order {
 
     @Column(name = "tags", nullable = false)
     private List<String> tags;
+
+
+    public Order(float price, String brand, List<String> tags) {
+        this.client = new Client();
+        this.price = price;
+        this.brand = brand;
+        this.tags = new ArrayList<>();
+    }
 
 }
