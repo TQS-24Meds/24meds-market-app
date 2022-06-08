@@ -1,9 +1,7 @@
 package com.meds.market.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.persistence.*;
 
@@ -16,7 +14,6 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
 @Table(name = "delivery")
 public class Delivery {
@@ -38,22 +35,19 @@ public class Delivery {
 
     @OneToOne           // Not sure if this relation is right aswell
     @JoinColumn(name = "order_id", nullable = false)
-    private int order_id;
+    private Order order;
 
-    @Column(name = "store_id", nullable = false)
-    private int store_id;
-
-
-    public Delivery(float client_lat, float client_long, String client_addr, Date timestamp, float price, int order_id, int store_id) {
-        this.products = new ArrayList<>();
-        this.client_lat = client_lat;
-        this.client_long = client_long;
-        this.client_addr = client_addr;
-        this.timestamp = timestamp;
-        this.price = price;
-        this.order_id = order_id;
-        this.store_id = store_id;
+    public Delivery() {
+        this.product_list = new HashMap<>();
+        this.timestamp = new Date();
+        this.order = new Order();
     }
 
 
+    public Delivery(Client client, HashMap<Product,Double> product_list, Date timestamp, Order order) {
+        this.client = client;
+        this.product_list = product_list;
+        this.timestamp = timestamp;
+        this.order = order;
+    }
 }

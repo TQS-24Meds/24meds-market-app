@@ -32,6 +32,10 @@ public class Product {
     @ManyToMany(mappedBy = "cart")
     private Set<Client> clients; 
 
+    @ManyToOne
+    @JoinColumn(name="id_cart", nullable=false)
+    private Cart cart;
+
     @Column(name = "description", nullable = false)
     private String description;
     

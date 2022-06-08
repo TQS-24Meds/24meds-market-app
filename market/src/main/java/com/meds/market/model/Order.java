@@ -1,11 +1,14 @@
 package com.meds.market.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
+import java.util.HashMap;
 
 import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.meds.market.enums.OrderStatusEnum;
+import com.meds.market.enums.PayTypeEnum;
 
 import lombok.*;
 
@@ -34,26 +37,39 @@ public class Order {
     @Column(name = "price", nullable = false)
     private float price;
     
-    @Column(name = "status_finished", nullable = false)
-    private boolean status_finished;
+    @Column(name = "status", nullable = false)
+    private OrderStatusEnum status;
 
     @Column(name = "pay_type", nullable = false)
-    private String pay_type;
+    private PayTypeEnum pay_type;
 
-    @Column(name = "products_list", nullable = false) // doesn't this need to connect with cart model? and join column?
+    @Column(name = "products_list", nullable = false)
     private HashMap<Product, Double> product_list;
 
-    /* @Column(name = "qr_code", nullable = false) // no idea what is going on here, https://medium.com/nerd-for-tech/how-to-generate-qr-code-in-java-spring-boot-134adb81f10d
-    private String qr_code; */
+    @Column(name = "qr_code", nullable = false) 
+    private String qr_code;
 
-
-
-
-    public Order(float price, String brand, List<String> tags) {
+    public Order(float price, String qr_code) {
         this.client = new Client();
+        this.timestamp = new Date();
         this.price = price;
-        this.brand = brand;
-        this.tags = new ArrayList<>();
+        this.status = OrderStatusEnum.PENDENT;
+        this.pay_type = PayTypeEnum.CREDIT_CARD;
+        this.product_list = new HashMap<>();
+        this.qr_code = qr_code;
     }
+
+
+    public Order(Client client, Date timestamp, float price, OrderStatusEnum status, PayTypeEnum pay_type, HashMap<Product,Double> product_list, String qr_code) {
+        this.client = client;
+        this.timestamp = timestamp;
+        this.price = price;
+        this.status = status;
+        this.pay_type = pay_type;
+        this.product_list = product_list;
+        this.qr_code = qr_code;
+    }
+
+
 
 }

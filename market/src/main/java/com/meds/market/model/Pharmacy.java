@@ -12,6 +12,7 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Table(name = "store")
 public class Pharmacy {

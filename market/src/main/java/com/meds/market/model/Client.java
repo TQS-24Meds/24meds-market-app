@@ -1,5 +1,6 @@
 package com.meds.market.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -21,7 +22,7 @@ public class Client extends Person {
     private int id_client;
 
     @ManyToMany
-    @JoinTable(name = "cart", joinColumns = @JoinColumn(name = "id_client"),
+    @JoinTable(name = "client_cart", joinColumns = @JoinColumn(name = "id_client"),
     inverseJoinColumns = @JoinColumn(name = "id_cart"))
     @JsonIgnore
     private Set<Product> cart;
@@ -40,6 +41,7 @@ public class Client extends Person {
         super(name, username, password, email, address, phone);
         this.lat = lat;
         this.lon = lon;
+        this.cart = new HashSet<>();
     }
 
 }
