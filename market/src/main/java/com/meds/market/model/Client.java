@@ -1,6 +1,9 @@
 package com.meds.market.model;
 
+import java.util.Set;
+
 import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.*;
 
@@ -15,7 +18,15 @@ public class Client extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_client")
-    private int id;
+    private int id_client;
+
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "client", orphanRemoval = true)
+    @JsonIgnore
+    private Set<Cart> cart;
+
+    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "client", orphanRemoval = true)
+    @JsonIgnore
+    private Set<Order> orders;
 
     @Column(name = "lat", nullable = false)
     private float lat;

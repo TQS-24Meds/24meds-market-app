@@ -23,6 +23,14 @@ public class Product {
 
     @Column(name = "name", nullable = false)
     private String name; 
+    
+    @ManyToOne
+    @JoinColumn(name = "id_pharmacy", nullable = false)
+    private Pharmacy pharmacy; 
+
+    @ManyToOne
+    @JoinColumn(name = "id_cart", nullable = false)
+    private Cart cart; 
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -36,8 +44,8 @@ public class Product {
     @Column(name = "brand", nullable = false)
     private String brand;
 
-    @Column(name = "tags", nullable = false)
-    private List<String> tags;
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "product", orphanRemoval = true)
+    private List<Tags> tags;
 
 
     public Product(String name, String description, String photo, float price, String brand) {
