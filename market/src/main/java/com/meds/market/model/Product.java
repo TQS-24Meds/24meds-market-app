@@ -2,6 +2,7 @@ package com.meds.market.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -28,9 +29,8 @@ public class Product {
     @JoinColumn(name = "id_pharmacy", nullable = false)
     private Pharmacy pharmacy; 
 
-    @ManyToOne
-    @JoinColumn(name = "id_cart", nullable = false)
-    private Cart cart; 
+    @ManyToMany(mappedBy = "cart")
+    private Set<Client> clients; 
 
     @Column(name = "description", nullable = false)
     private String description;
