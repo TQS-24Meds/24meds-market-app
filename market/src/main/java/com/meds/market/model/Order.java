@@ -43,8 +43,9 @@ public class Order {
     @Column(name = "pay_type", nullable = false)
     private PayTypeEnum pay_type;
 
-    @Column(name = "products_list", nullable = false)
-    private HashMap<Product, Double> product_list;
+    /* tamos a repetir isro no order e delivery */
+    // @Column(name = "products_list", nullable = false)
+    // private HashMap<Product, Double> product_list;
 
     @Column(name = "qr_code", nullable = false) 
     private String qr_code;
@@ -55,21 +56,18 @@ public class Order {
         this.price = price;
         this.status = OrderStatusEnum.PENDENT;
         this.pay_type = PayTypeEnum.CREDIT_CARD;
-        this.product_list = new HashMap<>();
+        // this.product_list = new HashMap<>();
         this.qr_code = qr_code;
     }
 
-
-    public Order(Client client, Date timestamp, float price, OrderStatusEnum status, PayTypeEnum pay_type, HashMap<Product,Double> product_list, String qr_code) {
+    public Order(Client client, Date timestamp, float price, OrderStatusEnum status, PayTypeEnum pay_type, String qr_code) {
         this.client = client;
         this.timestamp = timestamp;
         this.price = price;
         this.status = status;
         this.pay_type = pay_type;
-        this.product_list = product_list;
+        // this.product_list = product_list;
         this.qr_code = qr_code;
     }
-
-
 
 }

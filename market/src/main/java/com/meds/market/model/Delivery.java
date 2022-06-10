@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import javax.persistence.*;
 
-
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.*;
@@ -42,7 +41,6 @@ public class Delivery {
         this.timestamp = new Date();
         this.order = new Order();
     }
-
 
     public Delivery(Client client, HashMap<Product,Double> product_list, Date timestamp, Order order) {
         this.client = client;
