@@ -43,6 +43,9 @@ public class Person {
     @Column(name = "phone", nullable = false)
     private int phone;
 
+    @OneToOne
+    @JoinColumn(name = "id_coordinates")
+    private Coordinates person_location;
 
     public Person(String name, String username, String password, String email, String address, int phone) {
         this.name = name;
@@ -50,7 +53,16 @@ public class Person {
         this.password = password;
         this.email = email;
         this.address = address;
+    }
+
+    public Person(String name, String username, String password, String email, String address, int phone, Coordinates person_location) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.address = address;
         this.phone = phone;
+        this.person_location = person_location;
     }
 
 }

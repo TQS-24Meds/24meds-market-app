@@ -42,8 +42,8 @@ public class Product {
     @Column(name = "photo", nullable = false)
     private String photo;
 
-    @Column(name = "price", nullable = false)
-    private float price;
+    @Column(name = "product_price", nullable = false)
+    private float product_price;
     
     @Column(name = "brand", nullable = false)
     private String brand;
@@ -52,11 +52,19 @@ public class Product {
     private List<Tags> tags;
 
 
-    public Product(String name, String description, String photo, float price, String brand) {
+    public Product(String name, String description, float product_price, String brand) {
+        this.name = name;
+        this.description = description;
+        this.product_price = product_price;
+        this.brand = brand;
+        this.tags = new ArrayList<>();
+    }
+
+    public Product(String name, String description, String photo, float product_price, String brand) {
         this.name = name;
         this.description = description;
         this.photo = photo;
-        this.price = price;
+        this.product_price = product_price;
         this.brand = brand;
         this.tags = new ArrayList<>();
     }

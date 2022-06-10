@@ -28,21 +28,23 @@ public class Pharmacy {
     @Column(name = "address", nullable = false)
     private String address; 
 
-    @Column(name = "latitude", nullable = false)
-    private double latitude; 
+    // @Column(name = "lat", nullable = false)
+    // private double lat; 
 
-    @Column(name = "longitude", nullable = false)
-    private double longitude;    
+    // @Column(name = "lon", nullable = false)
+    // private double lon;    
+
+    @OneToOne
+    @JoinColumn(name = "id_coordinates")
+    private Coordinates store_location;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "store", orphanRemoval = true)
     private List<Product> products;
 
-
-    public Pharmacy(String name, String address, double latitude, double longitude) {
+    public Pharmacy(String name, String address, Coordinates store_location) {
         this.name = name;
         this.address = address;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.store_location = store_location;
         this.products = new ArrayList<>();
     }
 

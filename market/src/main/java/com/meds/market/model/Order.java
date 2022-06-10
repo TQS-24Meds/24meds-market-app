@@ -34,8 +34,8 @@ public class Order {
     @Column(name = "timestamp")
     private Date timestamp;
 
-    @Column(name = "price", nullable = false)
-    private float price;
+    @Column(name = "total_price", nullable = false)
+    private float total_price;
     
     @Column(name = "status", nullable = false)
     private OrderStatusEnum status;
@@ -43,30 +43,33 @@ public class Order {
     @Column(name = "pay_type", nullable = false)
     private PayTypeEnum pay_type;
 
-    /* tamos a repetir isro no order e delivery */
-    // @Column(name = "products_list", nullable = false)
-    // private HashMap<Product, Double> product_list;
+    @Column(name = "products_list", nullable = false)
+    private HashMap<Product, Double> product_list;
 
     @Column(name = "qr_code", nullable = false) 
     private String qr_code;
 
-    public Order(float price, String qr_code) {
-        this.client = new Client();
-        this.timestamp = new Date();
-        this.price = price;
-        this.status = OrderStatusEnum.PENDENT;
-        this.pay_type = PayTypeEnum.CREDIT_CARD;
-        // this.product_list = new HashMap<>();
-        this.qr_code = qr_code;
+    public Order(Client client) { 
+        this.client = client;
+        this.product_list = new HashMap<>();
     }
 
-    public Order(Client client, Date timestamp, float price, OrderStatusEnum status, PayTypeEnum pay_type, String qr_code) {
+    public Order(Client client, float total_price, OrderStatusEnum status, PayTypeEnum pay_type, HashMap<Product, Double> product_list) {
         this.client = client;
-        this.timestamp = timestamp;
-        this.price = price;
+        this.timestamp = new Date();
+        this.total_price = total_price;
         this.status = status;
         this.pay_type = pay_type;
-        // this.product_list = product_list;
+        this.product_list = product_list;
+    }
+
+    public Order(Client client, Date timestamp, float total_price, OrderStatusEnum status, PayTypeEnum pay_type, String qr_code, HashMap<Product, Double> product_list) {
+        this.client = client;
+        this.timestamp = timestamp;
+        this.total_price = total_price;
+        this.status = status;
+        this.pay_type = pay_type;
+        this.product_list = product_list;
         this.qr_code = qr_code;
     }
 

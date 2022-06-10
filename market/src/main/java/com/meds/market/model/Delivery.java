@@ -37,15 +37,14 @@ public class Delivery {
     private Order order;
 
     public Delivery() {
-        this.product_list = new HashMap<>();
+        // this.product_list = new HashMap<>();
         this.timestamp = new Date();
         this.order = new Order();
     }
 
-    public Delivery(Client client, HashMap<Product,Double> product_list, Date timestamp, Order order) {
-        this.client = client;
-        this.product_list = product_list;
-        this.timestamp = timestamp;
+    public Delivery(Order order) {
         this.order = order;
+        this.timestamp = new Date();
     }
+
 }
