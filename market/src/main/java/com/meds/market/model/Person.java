@@ -9,17 +9,18 @@ import lombok.*;
 
 @Data
 @Entity
+//@MappedSuperclass
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 @Table(name = "person")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "person_id")
+    @Column(name = "id_person")
     private int id;
 
     @Column(name = "name", nullable = false)
@@ -43,7 +44,7 @@ public class Person {
     @Column(name = "phone", nullable = false)
     private int phone;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_coordinates")
     private Coordinates person_location;
 

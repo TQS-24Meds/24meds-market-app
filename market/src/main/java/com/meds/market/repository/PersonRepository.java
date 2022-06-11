@@ -10,5 +10,5 @@ public interface PersonRepository<T extends Person> extends JpaRepository<T, Int
     Optional<Person> findByUsername(String username);
     Optional<Person> findByEmail(String email);
     Person findByPhone(int phone);
-    Person findById(int id);
+    Optional<Person> findById(int id);
 }

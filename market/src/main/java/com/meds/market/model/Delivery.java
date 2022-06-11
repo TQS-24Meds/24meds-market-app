@@ -17,15 +17,12 @@ import lombok.*;
 @Table(name = "delivery")
 public class Delivery {
 
-    private Client client;
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_delivery")
     private int id;
     
-    @OneToOne               // I'm not sure if this is alright, please check
-    @JoinColumn(name = "products_list", nullable = false)
+    @Column(name = "products_list")
     private HashMap<Product, Double> product_list;
 
     @CreationTimestamp
@@ -33,7 +30,7 @@ public class Delivery {
     private Date timestamp; // gives us the rider's pickup time at the store?
 
     @OneToOne           // Not sure if this relation is right aswell
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "id_order", nullable = false)
     private Order order;
 
     public Delivery() {

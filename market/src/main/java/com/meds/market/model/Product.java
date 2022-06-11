@@ -25,12 +25,9 @@ public class Product {
     @Column(name = "name", nullable = false)
     private String name; 
     
-    @ManyToOne
-    @JoinColumn(name = "id_pharmacy", nullable = false)
-    private Pharmacy pharmacy; 
-
-    @ManyToMany(mappedBy = "cart")
-    private Set<Client> clients; 
+    @ManyToMany
+    @JoinColumn(name = "product_list", nullable = false)
+    private Set<Pharmacy> pharmacy; 
 
     @ManyToOne
     @JoinColumn(name="id_cart", nullable=false)
@@ -48,7 +45,7 @@ public class Product {
     @Column(name = "brand", nullable = false)
     private String brand;
 
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "product", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Tags> tags;
 
 

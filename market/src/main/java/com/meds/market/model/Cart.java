@@ -1,7 +1,6 @@
 package com.meds.market.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -21,19 +20,18 @@ public class Cart {
     @Column(name = "id_cart")
     private int id;
 
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "cart", orphanRemoval = true)
-    private Set<Product> products;
+    // @ManyToOne
+    // @JoinColumn(name = "id_client")
+    // private Client client; 
 
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "cart", orphanRemoval = true)
+    private List<Product> product_list;
+    
     @Column(name = "amount")
     private int amount;
 
-    public Cart(int amount) {
-        this.amount = amount;
-        this.products = new HashSet<>();
-    }
-
-    public Cart(Set<Product> products, int amount) {
-        this.products = products;
+    public Cart(List<Product> product_list, int amount) {
+        this.product_list = product_list;
         this.amount = amount;
     }
     

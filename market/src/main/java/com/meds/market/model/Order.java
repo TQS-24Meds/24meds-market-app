@@ -27,7 +27,7 @@ public class Order {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_client", nullable = false)
+    @JoinColumn(name = "id_client")
     private Client client; 
 
     @CreationTimestamp

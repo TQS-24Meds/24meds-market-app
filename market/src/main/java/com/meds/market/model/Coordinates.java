@@ -1,6 +1,7 @@
 package com.meds.market.model;
 
 import javax.persistence.*;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.*;
@@ -10,13 +11,12 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString
-@Table(name = "coordinates")
 public class Coordinates {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     @Column(name = "id_coordinates")
-    private int id_coordinates;
+    private int id;
 
     @Column(name = "lat", nullable = false)
     private float lat;
@@ -26,11 +26,11 @@ public class Coordinates {
 
     @JsonIgnore
     @OneToOne(mappedBy = "person_location")
-    private Person person_location;
+    private Person person;
 
-    @JsonIgnore
+    @JsonIgnore    
     @OneToOne(mappedBy = "store_location")
-    private Pharmacy store_location;
+    private Pharmacy store;
 
     public Coordinates(float lat, float lon) {
         this.lat = lat;

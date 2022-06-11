@@ -27,25 +27,22 @@ public class Pharmacy {
 
     @Column(name = "address", nullable = false)
     private String address; 
-
-    // @Column(name = "lat", nullable = false)
-    // private double lat; 
-
-    // @Column(name = "lon", nullable = false)
-    // private double lon;    
-
-    @OneToOne
-    @JoinColumn(name = "id_coordinates")
-    private Coordinates store_location;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "store", orphanRemoval = true)
-    private List<Product> products;
+    @ManyToMany
+    @JoinTable(name = "store_products", 
+        joinColumns = @JoinColumn(name = "id_pharmacy"),
+        inverseJoinColumns = @JoinColumn(name = "id_product"))
+    private List<Product> product_list;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_coordinates")
+    private Coordinates store_location;;
 
     public Pharmacy(String name, String address, Coordinates store_location) {
         this.name = name;
         this.address = address;
         this.store_location = store_location;
-        this.products = new ArrayList<>();
+        this.product_list = new ArrayList<>();
     }
 
 
