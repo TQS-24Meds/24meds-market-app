@@ -1,4 +1,4 @@
-/* package com.meds.market.repository;
+package com.meds.market.repository;
 
 import java.util.Optional;
 
@@ -27,8 +27,8 @@ public class ClientRepositoryTest {
         john = new Client("John Doe", "johndoe", "mypassword", "john@doe.com", "john house", 912345678);
         entityManager.persistAndFlush(john);
         
-        Coordinates loc = new Coordinates(-39.80711f, 151.71425f);
-        entityManager.persistAndFlush(loc);
+        // Coordinates loc = new Coordinates(-39.80711f, 151.71425f);
+        // entityManager.persistAndFlush(loc);
     }
 
     @Test
@@ -40,4 +40,3 @@ public class ClientRepositoryTest {
     }
 
 }
- */

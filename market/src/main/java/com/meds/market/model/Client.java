@@ -17,7 +17,7 @@ public class Client extends Person {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client", orphanRemoval = true)
     @JsonIgnore
-    private List<Order> orders;
+    private List<Purchase> purchases;
 
     public Client(String name, String username, String email, String password, String address, int phone) {
         super(name, username, email, password, address, phone);

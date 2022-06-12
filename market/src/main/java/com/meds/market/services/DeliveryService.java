@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.meds.market.enums.OrderStatusEnum;
+import com.meds.market.enums.PurchaseStatusEnum;
 import com.meds.market.model.*;
 import com.meds.market.repository.*;
 
@@ -16,16 +16,16 @@ public class DeliveryService {
     
     @Autowired private DeliveryRepository deliveryRepository;
 
-    @Autowired private OrderService orderService;
+    @Autowired private PurchaseService purchaseService;
 
     Delivery placeDelivery(Delivery delivery) {
 
-        Order order = delivery.getOrder();
-        Delivery newDelivery = new Delivery(order);
+        Purchase purchase = delivery.getPurchase();
+        Delivery newDelivery = new Delivery(purchase);
 
-        orderService.updateStatus(order, OrderStatusEnum.ACCEPTED);
+        purchaseService.updateStatus(purchase, PurchaseStatusEnum.ACCEPTED);
 
-        newDelivery.setProduct_list(order.getProduct_list());
+        newDelivery.setProduct_list(purchase.getProduct_list());
         Delivery deliveryPlaced = deliveryRepository.save(newDelivery);
 
         return deliveryPlaced;

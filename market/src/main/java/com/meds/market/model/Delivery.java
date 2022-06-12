@@ -30,17 +30,17 @@ public class Delivery {
     private Date timestamp; // gives us the rider's pickup time at the store?
 
     @OneToOne           // Not sure if this relation is right aswell
-    @JoinColumn(name = "id_order", nullable = false)
-    private Order order;
+    @JoinColumn(name = "id_purchase", nullable = false)
+    private Purchase purchase;
 
     public Delivery() {
         // this.product_list = new HashMap<>();
         this.timestamp = new Date();
-        this.order = new Order();
+        this.purchase = new Purchase();
     }
 
-    public Delivery(Order order) {
-        this.order = order;
+    public Delivery(Purchase purchase) {
+        this.purchase = purchase;
         this.timestamp = new Date();
     }
 

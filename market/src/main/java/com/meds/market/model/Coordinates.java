@@ -11,6 +11,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString
+@Table(name = "coordinates")
 public class Coordinates {
 
     @Id

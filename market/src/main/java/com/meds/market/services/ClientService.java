@@ -49,12 +49,12 @@ public class ClientService {
     }
     
 
-    List<Order> getOrders(String clientUsername){
+    List<Purchase> getPurchases(String clientUsername){
     
         Optional<Person> clientFoundByUsername = clientRepository.findByUsername(clientUsername);
 
         if (!clientFoundByUsername.isPresent()) { throw new ResourceNotFoundException("Client not found."); }
-        return ((Client) clientFoundByUsername.get()).getOrders();
+        return ((Client) clientFoundByUsername.get()).getPurchases();
     }
     
 
@@ -67,7 +67,7 @@ public class ClientService {
         mappedClient.put("email", client.getEmail());
         mappedClient.put("phone", client.getPhone());
         mappedClient.put("person_location", client.getPerson_location());
-        mappedClient.put("orders", client.getOrders());
+        mappedClient.put("purchases", client.getPurchases());
 
         return mappedClient;
     }

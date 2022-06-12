@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.meds.market.enums.OrderStatusEnum;
+import com.meds.market.enums.PurchaseStatusEnum;
 import com.meds.market.enums.PayTypeEnum;
 
 import lombok.*;
@@ -18,12 +18,12 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString
-@Table(name = "order")
-public class Order {
+@Table(name = "purchase")
+public class Purchase {
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id_order")
+    @Column(name = "id_purchase")
     private int id;
 
     @ManyToOne
@@ -38,7 +38,7 @@ public class Order {
     private float total_price;
     
     @Column(name = "status", nullable = false)
-    private OrderStatusEnum status;
+    private PurchaseStatusEnum status;
 
     @Column(name = "pay_type", nullable = false)
     private PayTypeEnum pay_type;
@@ -49,12 +49,12 @@ public class Order {
     @Column(name = "qr_code", nullable = false) 
     private String qr_code;
 
-    public Order(Client client) { 
+    public Purchase(Client client) { 
         this.client = client;
         this.product_list = new HashMap<>();
     }
 
-    public Order(Client client, float total_price, OrderStatusEnum status, PayTypeEnum pay_type, HashMap<Product, Double> product_list) {
+    public Purchase(Client client, float total_price, PurchaseStatusEnum status, PayTypeEnum pay_type, HashMap<Product, Double> product_list) {
         this.client = client;
         this.timestamp = new Date();
         this.total_price = total_price;
@@ -63,7 +63,7 @@ public class Order {
         this.product_list = product_list;
     }
 
-    public Order(Client client, Date timestamp, float total_price, OrderStatusEnum status, PayTypeEnum pay_type, String qr_code, HashMap<Product, Double> product_list) {
+    public Purchase(Client client, Date timestamp, float total_price, PurchaseStatusEnum status, PayTypeEnum pay_type, String qr_code, HashMap<Product, Double> product_list) {
         this.client = client;
         this.timestamp = timestamp;
         this.total_price = total_price;
