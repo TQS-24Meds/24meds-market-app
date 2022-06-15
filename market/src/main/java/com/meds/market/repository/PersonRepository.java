@@ -9,6 +9,6 @@ import com.meds.market.model.Person;
 public interface PersonRepository<T extends Person> extends JpaRepository<T, Integer> {
     Optional<Person> findByUsername(String username);
     Optional<Person> findByEmail(String email);
-    Person findByPhone(int phone);
+    Optional<Person> findByPhone(int phone);
     Optional<Person> findById(int id);
 }

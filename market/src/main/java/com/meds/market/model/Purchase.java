@@ -1,7 +1,6 @@
 package com.meds.market.model;
 
 import java.util.Date;
-import java.util.HashMap;
 
 import javax.persistence.*;
 
@@ -43,33 +42,33 @@ public class Purchase {
     @Column(name = "pay_type", nullable = false)
     private PayTypeEnum pay_type;
 
-    @Column(name = "products_list", nullable = false)
-    private HashMap<Product, Double> product_list;
-
     @Column(name = "qr_code", nullable = false) 
     private String qr_code;
 
+    // @Column(name = "client_cart")
+    // private Cart client_cart;
+
     public Purchase(Client client) { 
         this.client = client;
-        this.product_list = new HashMap<>();
+        //this.client_cart = client.getCart();
     }
 
-    public Purchase(Client client, float total_price, PurchaseStatusEnum status, PayTypeEnum pay_type, HashMap<Product, Double> product_list) {
+    public Purchase(Client client, float total_price, PurchaseStatusEnum status, PayTypeEnum pay_type) {
         this.client = client;
         this.timestamp = new Date();
         this.total_price = total_price;
         this.status = status;
         this.pay_type = pay_type;
-        this.product_list = product_list;
+        // this.client_cart = client.getCart() ;
     }
 
-    public Purchase(Client client, Date timestamp, float total_price, PurchaseStatusEnum status, PayTypeEnum pay_type, String qr_code, HashMap<Product, Double> product_list) {
+    public Purchase(Client client, Date timestamp, float total_price, PurchaseStatusEnum status, PayTypeEnum pay_type, String qr_code) {
         this.client = client;
         this.timestamp = timestamp;
         this.total_price = total_price;
         this.status = status;
         this.pay_type = pay_type;
-        this.product_list = product_list;
+        // this.client_cart = client.getCart() ;
         this.qr_code = qr_code;
     }
 

@@ -1,9 +1,7 @@
 package com.meds.market.services;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
-import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,15 +15,14 @@ import com.meds.market.repository.*;
 public class PurchaseService {
     
     @Autowired private PurchaseRepository purchaseRepository;
-    
+
     Purchase placePurchase(Purchase purchase) {
-        
+
         Purchase newPurchase = new Purchase(purchase.getClient());
 
         newPurchase.setTotal_price(getTotalPrice(purchase));
         newPurchase.setStatus(PurchaseStatusEnum.PENDENT);
         newPurchase.setPay_type(purchase.getPay_type());
-        newPurchase.setProduct_list(purchase.getProduct_list());
         Purchase purchasePlaced = purchaseRepository.save(newPurchase);
 
         return purchasePlaced;
@@ -41,23 +38,6 @@ public class PurchaseService {
         return purchaseFound.get();
     }
 
-
-    Map<String, Object> getProductList(Purchase purchase) {
-        
-        Map<Product, Double> productList = purchase.getProduct_list();
-
-        Map<String, Object> map = new HashMap<>();
-
-        for (Entry<Product, Double> entry : productList.entrySet()) {
-
-            map.put("product", entry.getKey());
-            map.put("amount", entry.getValue());
-        }
-
-        return map;
-    }
-
-
     public Purchase updateStatus(Purchase purchase, PurchaseStatusEnum status) {
 
         if (status == PurchaseStatusEnum.PENDENT) purchase.setStatus(PurchaseStatusEnum.PENDENT);
@@ -69,16 +49,15 @@ public class PurchaseService {
 
     }
 
-
     float getTotalPrice(Purchase purchase) {
 
         float totalPrice = 0;
 
-        Map<Product, Double> productList = purchase.getProduct_list();
+        List<CartStock> productList = purchase.getClient().getCart().getCartStocks();
 
-        for (Entry<Product, Double> entry : productList.entrySet()) {
+        for (CartStock stock : productList) {
 
-            float product_price = entry.getKey().getProduct_price();
+            float product_price = stock.getSpecificStockPrice();
             totalPrice += product_price;
         }
 

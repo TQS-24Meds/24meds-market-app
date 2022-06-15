@@ -24,15 +24,11 @@ public class Cart {
     // @JoinColumn(name = "id_client")
     // private Client client; 
 
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "cart", orphanRemoval = true)
-    private List<Product> product_list;
-    
-    @Column(name = "amount")
-    private int amount;
+    @OneToMany(mappedBy = "cart")
+    private List<CartStock> cartStocks;
 
-    public Cart(List<Product> product_list, int amount) {
-        this.product_list = product_list;
-        this.amount = amount;
+    public Cart(List<CartStock> cartStocks) {
+        this.cartStocks = cartStocks;
     }
     
 }

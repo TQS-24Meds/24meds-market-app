@@ -1,7 +1,6 @@
 package com.meds.market.model;
 
 import java.util.Date;
-import java.util.HashMap;
 
 import javax.persistence.*;
 
@@ -22,25 +21,20 @@ public class Delivery {
     @Column(name = "id_delivery")
     private int id;
     
-    @Column(name = "products_list")
-    private HashMap<Product, Double> product_list;
-
     @CreationTimestamp
     @Column(name = "timestamp")
-    private Date timestamp; // gives us the rider's pickup time at the store?
+    private Date timestamp; 
 
-    @OneToOne           // Not sure if this relation is right aswell
+    @OneToOne           
     @JoinColumn(name = "id_purchase", nullable = false)
-    private Purchase purchase;
+    private Purchase client_purchase;
 
-    public Delivery() {
-        // this.product_list = new HashMap<>();
-        this.timestamp = new Date();
-        this.purchase = new Purchase();
-    }
+    // what
+    @Column(name = "storeuid", nullable = false) 
+    private int storeuid; 
 
-    public Delivery(Purchase purchase) {
-        this.purchase = purchase;
+    public Delivery(Purchase client_purchase) {
+        this.client_purchase = client_purchase;
         this.timestamp = new Date();
     }
 
