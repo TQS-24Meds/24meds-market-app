@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.meds.market.enums.PurchaseStatusEnum;
 import com.meds.market.enums.PayTypeEnum;
@@ -42,7 +43,7 @@ public class Purchase {
     @Column(name = "pay_type", nullable = false)
     private PayTypeEnum pay_type;
 
-    @Column(name = "qr_code", nullable = false) 
+    @Column(name = "qr_code") 
     private String qr_code;
 
     // @Column(name = "client_cart")
@@ -51,6 +52,17 @@ public class Purchase {
     public Purchase(Client client) { 
         this.client = client;
         //this.client_cart = client.getCart();
+    }
+
+
+    @Autowired
+    public Purchase(Client client, float total_price, PayTypeEnum pay_type) {
+        this.client = client;
+        this.timestamp = new Date();
+        this.total_price = total_price;
+        this.status =  PurchaseStatusEnum.PENDENT;
+        this.pay_type = pay_type;
+        // this.client_cart = client.getCart() ;
     }
 
     public Purchase(Client client, float total_price, PurchaseStatusEnum status, PayTypeEnum pay_type) {

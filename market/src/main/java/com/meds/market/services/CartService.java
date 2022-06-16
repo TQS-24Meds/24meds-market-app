@@ -41,4 +41,15 @@ public class CartService {
         return map;
     }
 
+    Float getCartTotalPrice(Cart cart){
+
+        float totalPrice = 0;
+
+        List<CartStock> stock = cart.getCartStocks();
+
+        for (CartStock cs : stock) { totalPrice += cs.getSpecificStockPrice(); }
+
+        return totalPrice;
+    }
+
 }

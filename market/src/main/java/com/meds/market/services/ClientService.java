@@ -38,8 +38,6 @@ public class ClientService {
 
         return clientRepository.save(clientToRegister);
     }
-
-    
     Client getClientByUsername(String username){
     
         Optional<Person> clientFoundByUsername = clientRepository.findByUsername(username);
@@ -47,24 +45,6 @@ public class ClientService {
         if (!clientFoundByUsername.isPresent()) { throw new ResourceNotFoundException("Client not found."); }
         return (Client) clientFoundByUsername.get();
     }
-    
-
-    List<Purchase> getPurchases(String clientUsername){
-    
-        Optional<Person> clientFoundByUsername = clientRepository.findByUsername(clientUsername);
-
-        if (!clientFoundByUsername.isPresent()) { throw new ResourceNotFoundException("Client not found."); }
-        return ((Client) clientFoundByUsername.get()).getPurchases();
-    }
-
-    Cart getCart(String clientUsername){
-    
-        Optional<Person> clientFoundByUsername = clientRepository.findByUsername(clientUsername);
-
-        if (!clientFoundByUsername.isPresent()) { throw new ResourceNotFoundException("Client not found."); }
-        return ((Client) clientFoundByUsername.get()).getCart();
-    }
-    
 
     Map<String, Object> convertClientToMap(Client client){
     

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import lombok.*;
 
 @Entity
@@ -20,6 +22,7 @@ public class Client extends Person {
     @OneToOne
     private Cart cart;
 
+    @Autowired
     public Client(String name, String username, String email, String password, String address, int phone) {
         super(name, username, email, password, address, phone);
     }

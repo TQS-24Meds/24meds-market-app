@@ -24,7 +24,7 @@ public class ClientRepositoryTest extends RunTestContainer {
 
     @Autowired private ClientRepository repository;
 
-    private Client john;
+    Client john;
 
     @BeforeEach
     void setUp() {
@@ -122,7 +122,7 @@ public class ClientRepositoryTest extends RunTestContainer {
 
         List<Client> allClients = repository.findAll();
 
-        assertThat( allClients.size()).isEqualTo(4);
+        assertThat( allClients).hasSize(4).extracting(Client::getUsername).contains(dan.getUsername(), alice.getUsername(), alex.getUsername());
         assertThat( allClients ).contains(dan);
         assertThat( allClients ).contains(alice);
         assertThat( allClients ).contains(alex);

@@ -1,6 +1,5 @@
 package com.meds.market.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +15,13 @@ public class PurchaseService {
     
     @Autowired private PurchaseRepository purchaseRepository;
 
+    @Autowired private CartService cartService;
+
     Purchase placePurchase(Purchase purchase) {
 
         Purchase newPurchase = new Purchase(purchase.getClient());
 
-        newPurchase.setTotal_price(getTotalPrice(purchase));
+        newPurchase.setTotal_price(cartService.getCartTotalPrice(purchase.getClient().getCart()));
         newPurchase.setStatus(PurchaseStatusEnum.PENDENT);
         newPurchase.setPay_type(purchase.getPay_type());
         Purchase purchasePlaced = purchaseRepository.save(newPurchase);
@@ -47,21 +48,6 @@ public class PurchaseService {
 
         return purchaseRepository.save(purchase);
 
-    }
-
-    float getTotalPrice(Purchase purchase) {
-
-        float totalPrice = 0;
-
-        List<CartStock> productList = purchase.getClient().getCart().getCartStocks();
-
-        for (CartStock stock : productList) {
-
-            float product_price = stock.getSpecificStockPrice();
-            totalPrice += product_price;
-        }
-
-        return totalPrice;
     }
 
 }
