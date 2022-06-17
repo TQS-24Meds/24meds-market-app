@@ -2,6 +2,8 @@ package com.meds.market.model;
 
 import javax.persistence.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import lombok.*;
 
 @Data
@@ -22,16 +24,23 @@ public class CartStock {
     @JoinColumn(name = "id_product", nullable = false)
     private Product product; 
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cart", nullable = false)
     private Cart cart; 
 
     @Column(name = "amount", nullable = false)
     private int amount;
 
+    @Autowired
     public CartStock(Product product, int amount) {
         this.product = product;
         this.amount = amount;
+    }
+
+    public CartStock(Product product, int amount, Cart cart) {
+        this.product = product;
+        this.amount = amount;
+        this.cart = cart;
     }
 
     // public void addAmount(int amount) { this.amount += amount; }

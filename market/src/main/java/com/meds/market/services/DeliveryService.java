@@ -1,9 +1,12 @@
 package com.meds.market.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.meds.market.enums.PurchaseStatusEnum;
+import com.meds.market.enums.*;
+import com.meds.market.exception.*;
 import com.meds.market.model.*;
 import com.meds.market.repository.*;
 
@@ -12,19 +15,44 @@ public class DeliveryService {
     
     @Autowired private DeliveryRepository deliveryRepository;
 
+    @Autowired private PurchaseRepository purchaseRepository;
+
     @Autowired private PurchaseService purchaseService;
 
-    Delivery placeDelivery(Delivery delivery) {
+    public Delivery registerDelivery(Delivery delivery) {
 
-        Purchase purchase = delivery.getClient_purchase();
-        Delivery newDelivery = new Delivery(purchase);
+        try { 
+            Purchase purchase = delivery.getClient_purchase();
+            purchaseService.updateStatus(purchase);
+            purchaseRepository.save(purchase);
 
-        purchaseService.updateStatus(purchase, PurchaseStatusEnum.ACCEPTED);
+            delivery.setClient_purchase(purchase);
 
-        newDelivery.setClient_purchase(purchase);
-        Delivery deliveryPlaced = deliveryRepository.save(newDelivery);
-
-        return deliveryPlaced;
+            return deliveryRepository.save(delivery);
+        }
+        catch (Exception e) { throw new ObjectErrorException("Failed to register delivery!"); }
     }
 
+    public Delivery getDelivery(int id) {
+        Optional<Delivery> deliveryFound = deliveryRepository.findById(id);
+
+        if (!deliveryFound.isPresent())
+            throw new ObjectErrorException("Delivery not found!");
+
+        return deliveryFound.get();
+    }
+
+
+    public Delivery finishDelivery(Delivery delivery) {
+
+        try { 
+            Purchase purchase = delivery.getClient_purchase();
+
+            purchase.setStatus(PurchaseStatusEnum.DELIVERED);
+            purchaseRepository.save(purchase);
+
+            return deliveryRepository.save(delivery);
+        } 
+        catch (Exception e) { throw new ObjectErrorException("Failed to finish delivery!"); }
+    }
 }

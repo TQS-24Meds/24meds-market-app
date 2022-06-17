@@ -27,7 +27,7 @@ public class ProductRepositoryTest extends RunTestContainer {
 
     @BeforeEach
     void setUp() {
-        prod = new Product("benuron", "descript", 2.10f, "bene");
+        prod = new Product("benuron", "...", 2.10f, "bene");
         entityManager.persistAndFlush(prod);
     }
 

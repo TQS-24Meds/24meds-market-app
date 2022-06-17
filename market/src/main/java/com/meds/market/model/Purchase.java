@@ -31,7 +31,7 @@ public class Purchase {
     private Client client; 
 
     @CreationTimestamp
-    @Column(name = "timestamp")
+    @Column(name = "timestamp", nullable = false)
     private Date timestamp;
 
     @Column(name = "total_price", nullable = false)
@@ -46,41 +46,25 @@ public class Purchase {
     @Column(name = "qr_code") 
     private String qr_code;
 
-    // @Column(name = "client_cart")
-    // private Cart client_cart;
-
     public Purchase(Client client) { 
         this.client = client;
-        //this.client_cart = client.getCart();
     }
 
+    @Autowired
+    public Purchase(Client client, PayTypeEnum pay_type) {
+        this.client = client;
+        this.timestamp = new Date();
+        this.status =  PurchaseStatusEnum.PENDENT;
+        this.pay_type = pay_type;
+    }
 
     @Autowired
-    public Purchase(Client client, float total_price, PayTypeEnum pay_type) {
+    public Purchase(Client client, float total_price, PayTypeEnum pay_type, String qr_code) {
         this.client = client;
         this.timestamp = new Date();
         this.total_price = total_price;
         this.status =  PurchaseStatusEnum.PENDENT;
         this.pay_type = pay_type;
-        // this.client_cart = client.getCart() ;
-    }
-
-    public Purchase(Client client, float total_price, PurchaseStatusEnum status, PayTypeEnum pay_type) {
-        this.client = client;
-        this.timestamp = new Date();
-        this.total_price = total_price;
-        this.status = status;
-        this.pay_type = pay_type;
-        // this.client_cart = client.getCart() ;
-    }
-
-    public Purchase(Client client, Date timestamp, float total_price, PurchaseStatusEnum status, PayTypeEnum pay_type, String qr_code) {
-        this.client = client;
-        this.timestamp = timestamp;
-        this.total_price = total_price;
-        this.status = status;
-        this.pay_type = pay_type;
-        // this.client_cart = client.getCart() ;
         this.qr_code = qr_code;
     }
 

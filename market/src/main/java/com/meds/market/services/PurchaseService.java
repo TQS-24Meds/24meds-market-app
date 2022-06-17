@@ -15,39 +15,39 @@ public class PurchaseService {
     
     @Autowired private PurchaseRepository purchaseRepository;
 
-    @Autowired private CartService cartService;
+    // @Autowired private CartService cartService;
 
-    Purchase placePurchase(Purchase purchase) {
+    public Purchase registerPurchase(Purchase purchase) {
+        
+        try { 
+            purchase.setTotal_price(purchase.getTotal_price());
+            purchase.setStatus(PurchaseStatusEnum.PENDENT);
+            purchase.setPay_type(purchase.getPay_type());
 
-        Purchase newPurchase = new Purchase(purchase.getClient());
+            return purchaseRepository.save(purchase); 
+        } 
+        catch (Exception e) { throw new ObjectErrorException("Failed to register purchase!"); }
 
-        newPurchase.setTotal_price(cartService.getCartTotalPrice(purchase.getClient().getCart()));
-        newPurchase.setStatus(PurchaseStatusEnum.PENDENT);
-        newPurchase.setPay_type(purchase.getPay_type());
-        Purchase purchasePlaced = purchaseRepository.save(newPurchase);
 
-        return purchasePlaced;
     }
 
-
-    Purchase getPurchase(int id) {
+    public Purchase getPurchase(int id) {
         Optional<Purchase> purchaseFound = purchaseRepository.findById(id);
 
         if (!purchaseFound.isPresent())
-            throw new ResourceNotFoundException("Purchase not found.");
+            throw new ObjectErrorException("Purchase not found!");
 
         return purchaseFound.get();
     }
 
-    public Purchase updateStatus(Purchase purchase, PurchaseStatusEnum status) {
+    public Purchase updateStatus(Purchase purchase) {
 
-        if (status == PurchaseStatusEnum.PENDENT) purchase.setStatus(PurchaseStatusEnum.PENDENT);
-        else if (status == PurchaseStatusEnum.ACCEPTED) purchase.setStatus(PurchaseStatusEnum.ACCEPTED);
-        else if (status == PurchaseStatusEnum.PICKED_UP) purchase.setStatus(PurchaseStatusEnum.PICKED_UP);
-        else if (status == PurchaseStatusEnum.DELIVERED) purchase.setStatus(PurchaseStatusEnum.DELIVERED);
+        try { 
+            PurchaseStatusEnum currentStatus = purchase.getStatus();
+            purchase.setStatus(PurchaseStatusEnum.getNext(currentStatus));
 
-        return purchaseRepository.save(purchase);
-
+            return purchaseRepository.save(purchase);
+        } 
+        catch (Exception e) { throw new ObjectErrorException("Failed to update purchase status!"); }
     }
-
 }

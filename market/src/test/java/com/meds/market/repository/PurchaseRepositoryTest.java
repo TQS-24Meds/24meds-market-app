@@ -29,35 +29,42 @@ public class PurchaseRepositoryTest extends RunTestContainer {
     @Autowired private PurchaseRepository repository;
 
     Client john;
+    Product benuron, paracetemol;
+    CartStock bs, ps;
     Cart cart;
     Purchase purchase;
 
     @BeforeEach
     void setUp() {
 
-        john = new Client("John Doe", "johndoe", "mypassword", "john@doe.com", "john house", 912345678);
+        john = new Client("John Doe", "johndoe", "john@doe.com", "johnpass", "john house", 911111111);
         entityManager.persistAndFlush(john);
         
-        Product benuron = new Product("benuron", "descript", 2.10f, "bene");
-        Product paracetemol = new Product("paracetemol", "descript", 1.99f, "mylan");
+        cart = new Cart(john);
+        entityManager.persistAndFlush(cart);
+
+        benuron = new Product("benuron", "...", 2.10f, "bene");
+        paracetemol = new Product("paracetemol", "...", 1.99f, "mylan");
         entityManager.persistAndFlush(benuron);
         entityManager.persistAndFlush(paracetemol);
 
-        CartStock bs = new CartStock(benuron, 1);
-        CartStock ps = new CartStock(benuron, 2);
+        bs = new CartStock(benuron, 1);
+        ps = new CartStock(benuron, 2);
+        bs.setCart(cart);
+        ps.setCart(cart);
         entityManager.persistAndFlush(bs);
         entityManager.persistAndFlush(ps);
 
         List<CartStock> listOfProducts = new ArrayList<>(Arrays.asList(bs, ps));
 
-        cart = new Cart(john, listOfProducts);
-        entityManager.persistAndFlush(cart);
+        cart.setCartStocks(listOfProducts);
 
         float total_price = bs.getSpecificStockPrice() + ps.getSpecificStockPrice();
 
-        purchase = new Purchase(john, total_price, PayTypeEnum.DEBIT_CARD);
+        purchase = new Purchase(john, PayTypeEnum.DEBIT_CARD);
+        purchase.setTotal_price(total_price);
+        
         purchase.setStatus(PurchaseStatusEnum.PENDENT);
-
         entityManager.persistAndFlush(purchase);
     }
 
@@ -93,12 +100,4 @@ public class PurchaseRepositoryTest extends RunTestContainer {
 
         assertThat( purchaseFound ).isEmpty();
     }
-
-    @Test
-    void whenFindPurchaseByStatus_thenReturnPurchase() {
-        Optional<Purchase> purchaseFound = repository.findByStatus(PurchaseStatusEnum.DELIVERED);
-
-        assertThat( purchaseFound ).isEmpty();
-    }
-    
 }

@@ -27,28 +27,34 @@ public class CartRepositoryTest extends RunTestContainer {
     @Autowired private CartRepository repository;
 
     Client john;
+    Product benuron, paracetemol;
+    CartStock bs, ps;
     Cart cart;
 
     @BeforeEach
     void setUp() {
 
-        john = new Client("John Doe", "johndoe", "mypassword", "john@doe.com", "john house", 912345678);
+        john = new Client("John Doe", "johndoe", "john@doe.com", "johnpass", "john house", 911111111);
         entityManager.persistAndFlush(john);
         
-        Product benuron = new Product("benuron", "descript", 2.10f, "bene");
-        Product paracetemol = new Product("paracetemol", "descript", 1.99f, "mylan");
+        cart = new Cart(john);
+        entityManager.persistAndFlush(cart);
+
+        benuron = new Product("benuron", "...", 2.10f, "bene");
+        paracetemol = new Product("paracetemol", "...", 1.99f, "mylan");
         entityManager.persistAndFlush(benuron);
         entityManager.persistAndFlush(paracetemol);
 
-        CartStock bs = new CartStock(benuron, 1);
-        CartStock ps = new CartStock(benuron, 2);
+        bs = new CartStock(benuron, 1);
+        ps = new CartStock(benuron, 2);
+        bs.setCart(cart);
+        ps.setCart(cart);
         entityManager.persistAndFlush(bs);
         entityManager.persistAndFlush(ps);
 
         List<CartStock> listOfProducts = new ArrayList<>(Arrays.asList(bs, ps));
 
-        cart = new Cart(listOfProducts);
-        entityManager.persistAndFlush(cart);
+        cart.setCartStocks(listOfProducts);
 
         assertThat(listOfProducts).hasSize(2).extracting(CartStock::getProduct).contains(bs.getProduct(), ps.getProduct());
     }
@@ -76,11 +82,6 @@ public class CartRepositoryTest extends RunTestContainer {
 
         assertThat( items ).hasSize(1);
 
-    }
-    @Test
-    void whenDeleteAll_ThenCartEmpty() {
-        repository.deleteAll();
-        assertThat(repository.count()).isEqualTo(0);
     }
 
 }

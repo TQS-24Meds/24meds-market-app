@@ -28,7 +28,7 @@ public class ClientRepositoryTest extends RunTestContainer {
 
     @BeforeEach
     void setUp() {
-        john = new Client("John Doe", "johndoe", "mypassword", "john@doe.com", "john house", 912345678);
+        john = new Client("John Doe", "johndoe", "john@doe.com", "johnpass", "john house", 911111111);
         entityManager.persistAndFlush(john);
         
         Coordinates loc = new Coordinates(-39.80711f, 151.71425f);
@@ -111,9 +111,9 @@ public class ClientRepositoryTest extends RunTestContainer {
         entityManager.persist(alice_coor);
         entityManager.persist(alex_coor);
 
-        Client dan = new Client("Dan Daniel", "dandainel", "mypassword", "dan@daniel.com", "dan daniel", 912345678);
-        Client alice = new Client("Alice Wonder", "alicewonder", "mypassword", "alice@wonder.com", "alice wonder", 912345678);
-        Client alex = new Client("Alex Brain", "alexbrain", "mypassword", "alex@brain.com", "alex brain", 912345678);
+        Client dan = new Client("Dan Daniel", "dandainel", "dan@daniel.com", "mypassword", "dan house", 912345678);
+        Client alice = new Client("Alice Wonder", "alicewonder", "alice@wonder.com", "mypassword", "alice house", 912345678);
+        Client alex = new Client("Alex Brain", "alexbrain", "alex@brain.com", "mypassword", "alex house", 912345678);
         entityManager.persist(dan);
         entityManager.persist(alice);
         entityManager.persist(alex);

@@ -94,11 +94,7 @@ public class ProductServiceTest {
     void whenGetAllProducts_thenReturnList() {
         List<Product> productsFound = service.getAllProducts();
 
-        assertThat(productsFound).hasSize(3);
-        assertThat(productsFound).contains(benuron);
-        assertThat(productsFound).contains(brufen);
-        assertThat(productsFound).contains(paracetemol);
-
+        assertThat(productsFound).isNotNull().hasSize(3).extracting(Product::getId).contains(benuron.getId(), brufen.getId(), paracetemol.getId());
         verifyFindAllProductsIsCalledOnce();
 
     }

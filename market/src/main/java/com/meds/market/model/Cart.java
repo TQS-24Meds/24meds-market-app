@@ -1,6 +1,5 @@
 package com.meds.market.model;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.*;
@@ -29,17 +28,17 @@ public class Cart {
 
     @OneToMany(mappedBy = "cart")
     private List<CartStock> cartStocks;
-    
-    @Autowired
-    public Cart(List<CartStock> cartStocks) {
-        this.cartStocks = cartStocks;
-    }
 
+    @Autowired
     public Cart(Client client, List<CartStock> cartStocks) {
         this.client = client;
         this.cartStocks = cartStocks;
     }
 
+    public Cart(Client client) {
+        this.client = client;
+    }
+    
     public Float getCartPrice() { 
         // HashMap<Product, Integer> pl = new HashMap<>();
 

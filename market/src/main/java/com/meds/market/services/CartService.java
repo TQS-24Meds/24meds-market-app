@@ -36,23 +36,6 @@ public class CartService {
         return registeredCart;
     }
 
-    // public Map<String, Object> getProductList(Cart cart) {
-        
-    //     List<CartStock> productList = cart.getCartStocks();
-
-    //     Map<String, Object> map = new HashMap<>();
-
-    //     for (CartStock p : productList) {
-
-    //         map.put("product", p.getProduct());
-    //         map.put("amount", p.getAmount());
-    //     }
-
-    //     System.out.println(map.size());
-
-    //     return map;
-    // }
-
     public Map<List<String>, List<Integer>> getProductList(Cart cart) {
     
         List<CartStock> productList = cart.getCartStocks();
