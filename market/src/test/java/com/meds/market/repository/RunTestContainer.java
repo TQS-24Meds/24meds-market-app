@@ -5,7 +5,6 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
-
 @SuppressWarnings("rawtypes")
 public abstract class RunTestContainer {
     private static final DockerImageName MYSQL_IMAGE = DockerImageName.parse("mysql:8.0");
