@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.meds.market.exception.*;
@@ -19,34 +20,51 @@ public class ClientService {
 
     @Autowired private CoordinatesRepository coordRepository;
 
+    @Autowired private PasswordEncoder passwordEncoder;
 
-    Client registerClient(Client client) throws DuplicatedObjectException {
-    
-        Optional<Person> clientFoundByUsername = clientRepository.findByUsername(client.getUsername());
-        Optional<Person> clientFoundByEmail = clientRepository.findByEmail(client.getEmail());
-
-        if (client.getPerson_location() == null) { throw new ResourceNotFoundException("Home location is required."); }
+    public Client registerClient(Client client) throws DuplicatedObjectException {
         
-        if (clientFoundByUsername.isPresent()) { throw new DuplicatedObjectException("The provided username is already being used."); }
+        Optional<Client> clientFoundByUsername = clientRepository.findByUsername(client.getUsername());
+        Optional<Client> clientFoundByEmail = clientRepository.findByEmail(client.getEmail());
 
-        if (clientFoundByEmail.isPresent()) { throw new DuplicatedObjectException("The provided email is already being used."); }
+        if (client.getClient_location() == null) { throw new ResourceNotFoundException("Home location is required!"); }
+        
+        if (clientFoundByUsername.isPresent()) { throw new DuplicatedObjectException("The provided username is already being used!"); }
 
-        client.setPassword(client.getPassword());
-        Client clientToRegister = client;
+        if (clientFoundByEmail.isPresent()) { throw new DuplicatedObjectException("The provided email is already being used!"); }
 
-        coordRepository.save(clientToRegister.getPerson_location());
+        client.setPassword(passwordEncoder.encode(client.getPassword()));
+        coordRepository.save(client.getClient_location());
 
-        return clientRepository.save(clientToRegister);
+        return clientRepository.save(client);
     }
-    Client getClientByUsername(String username){
     
-        Optional<Person> clientFoundByUsername = clientRepository.findByUsername(username);
+    public List<Purchase> getPurchases(String username) {
+        Optional<Client> clientFoundByUsername = clientRepository.findByUsername(username);
 
-        if (!clientFoundByUsername.isPresent()) { throw new ResourceNotFoundException("Client not found."); }
+        if (!clientFoundByUsername.isPresent()) { throw new ResourceNotFoundException("Client not found!"); }
+
+        return clientFoundByUsername.get().getPurchases();
+    }
+
+
+    public Client getClientByUsername(String username){
+        Optional<Client> clientFoundByUsername = clientRepository.findByUsername(username);
+
+        if (!clientFoundByUsername.isPresent()) { throw new ResourceNotFoundException("Client not found!"); }
         return (Client) clientFoundByUsername.get();
     }
 
-    Map<String, Object> convertClientToMap(Client client){
+    public Client getClientByEmail(String email){
+        Optional<Client> clientFoundByEmail = clientRepository.findByEmail(email);
+
+        if (!clientFoundByEmail.isPresent()) { throw new ResourceNotFoundException("Client not found!"); }
+        return (Client) clientFoundByEmail.get();
+    }
+    
+
+    
+    public Map<String, Object> convertClientToMap(Client client){
     
         Map<String, Object> mappedClient = new HashMap<>();
 
@@ -54,10 +72,11 @@ public class ClientService {
         mappedClient.put("username", client.getUsername());
         mappedClient.put("email", client.getEmail());
         mappedClient.put("phone", client.getPhone());
-        mappedClient.put("person_location", client.getPerson_location());
+        mappedClient.put("client_location", client.getClient_location());
         mappedClient.put("purchases", client.getPurchases());
 
         return mappedClient;
     }
+    public List<Client> getAllClients() { return clientRepository.findAll(); }
 
 }

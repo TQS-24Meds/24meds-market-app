@@ -37,7 +37,7 @@ public class ClientRepositoryTest extends RunTestContainer {
 
     @Test
     void whenFindClientByValidId_thenReturnValidClient() {
-        Person clientFound = repository.findById(john.getId()).orElse(null);
+        Client clientFound = repository.findById(john.getId()).orElse(null);
 
         assertThat( clientFound ).isEqualTo( john );
         assertThat( clientFound ).isNotNull();
@@ -54,7 +54,7 @@ public class ClientRepositoryTest extends RunTestContainer {
 
     @Test
     void whenFindClientByValidUsername_thenReturnValidClient() {
-        Person clientFound = repository.findByUsername(john.getUsername()).orElse(null);
+        Client clientFound = repository.findByUsername(john.getUsername()).orElse(null);
 
         assertThat( clientFound ).isEqualTo( john );
         assertThat( clientFound ).isNotNull();
@@ -63,7 +63,7 @@ public class ClientRepositoryTest extends RunTestContainer {
     @Test
     void whenFindClientByInvalidUsername_thenReturnNull() {
         String invalidUsername = "invalid username";
-        Person clientFound = repository.findByUsername(invalidUsername).orElse(null);
+        Client clientFound = repository.findByUsername(invalidUsername).orElse(null);
 
         assertThat( clientFound ).isNull();
 
@@ -71,7 +71,7 @@ public class ClientRepositoryTest extends RunTestContainer {
 
     @Test
     void whenFindClientByValidEmail_thenReturnValidClient() {
-        Person clientFound = repository.findByEmail(john.getEmail()).orElse(null);
+        Client clientFound = repository.findByEmail(john.getEmail()).orElse(null);
 
         assertThat( clientFound ).isEqualTo( john );
         assertThat( clientFound ).isNotNull();
@@ -80,7 +80,7 @@ public class ClientRepositoryTest extends RunTestContainer {
     @Test
     void whenFindClientByInvalidEmail_thenReturnNull() {
         String invalidEmail = "invalid@email.com";
-        Person clientFound = repository.findByEmail(invalidEmail).orElse(null);
+        Client clientFound = repository.findByEmail(invalidEmail).orElse(null);
 
         assertThat( clientFound ).isNull();
 
@@ -88,7 +88,7 @@ public class ClientRepositoryTest extends RunTestContainer {
 
     @Test
     void whenFindClientByValidPhoneNumber_thenReturnValidClient() {
-        Person clientFound = repository.findByPhone(john.getPhone()).orElse(null);
+        Client clientFound = repository.findByPhone(john.getPhone()).orElse(null);
 
         assertThat( clientFound ).isEqualTo( john );
         assertThat( clientFound ).isNotNull();
@@ -97,7 +97,7 @@ public class ClientRepositoryTest extends RunTestContainer {
     @Test
     void whenFindClientByInvalidPhone_thenReturnNull() {
         int invalidPhone = 1;
-        Person clientFound = repository.findByPhone(invalidPhone).orElse(null);
+        Client clientFound = repository.findByPhone(invalidPhone).orElse(null);
 
         assertThat( clientFound ).isNull();
     }

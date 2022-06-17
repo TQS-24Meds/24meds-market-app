@@ -2,6 +2,8 @@ package com.meds.market.model;
 
 import javax.persistence.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.*;
@@ -9,13 +11,12 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
 @Table(name = "coordinates")
 public class Coordinates {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_coordinates")
     private int id;
 
@@ -26,13 +27,14 @@ public class Coordinates {
     private float lon;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "person_location")
-    private Person person;
+    @OneToOne(mappedBy = "client_location")
+    private Client client;
 
     @JsonIgnore    
     @OneToOne(mappedBy = "store_location")
     private Pharmacy store;
 
+    @Autowired
     public Coordinates(float lat, float lon) {
         this.lat = lat;
         this.lon = lon;

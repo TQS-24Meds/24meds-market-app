@@ -27,7 +27,7 @@ public class Purchase {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_client")
+    @JoinColumn(name = "id_client", nullable = false)
     private Client client; 
 
     @CreationTimestamp

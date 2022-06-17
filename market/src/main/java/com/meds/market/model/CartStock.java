@@ -19,11 +19,11 @@ public class CartStock {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_product")
+    @JoinColumn(name = "id_product", nullable = false)
     private Product product; 
 
     @ManyToOne
-    @JoinColumn(name = "id_cart")
+    @JoinColumn(name = "id_cart", nullable = false)
     private Cart cart; 
 
     @Column(name = "amount", nullable = false)

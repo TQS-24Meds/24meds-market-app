@@ -1,5 +1,6 @@
 package com.meds.market.model;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.*;
@@ -23,20 +24,28 @@ public class Cart {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_client")
+    @JoinColumn(name = "id_client", nullable = false)
     private Client client; 
 
     @OneToMany(mappedBy = "cart")
     private List<CartStock> cartStocks;
-
+    
+    @Autowired
+    public Cart(List<CartStock> cartStocks) {
+        this.cartStocks = cartStocks;
+    }
 
     public Cart(Client client, List<CartStock> cartStocks) {
         this.client = client;
         this.cartStocks = cartStocks;
     }
 
-    @Autowired
-    public Cart(List<CartStock> cartStocks) {
-        this.cartStocks = cartStocks;
+    public Float getCartPrice() { 
+        // HashMap<Product, Integer> pl = new HashMap<>();
+
+        float totalPrice = 0;
+        for (CartStock stock : cartStocks){ totalPrice += stock.getSpecificStockPrice(); }
+
+        return totalPrice;
     }
 }

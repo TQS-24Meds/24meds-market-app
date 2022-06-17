@@ -1,5 +1,6 @@
 package com.meds.market.services;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,7 @@ public class CartService {
     
     @Autowired private CartRepository cartRepository;
  
-    Cart getCart(int id){
+    public Cart getCart(int id){
         Optional<Cart> cartFound = cartRepository.findById(id);
 
         if (!cartFound.isPresent())
@@ -26,22 +27,54 @@ public class CartService {
         return cartFound.get();
     }
 
-    Map<String, Object> getProductList(Cart cart) {
+    public Cart registerCart(Cart cart) {
+        Cart registeredCart;
+
+        try { registeredCart = cartRepository.save(cart); } 
+        catch (Exception e) { throw new ObjectErrorException("Failed to register cart!"); }
+
+        return registeredCart;
+    }
+
+    // public Map<String, Object> getProductList(Cart cart) {
         
+    //     List<CartStock> productList = cart.getCartStocks();
+
+    //     Map<String, Object> map = new HashMap<>();
+
+    //     for (CartStock p : productList) {
+
+    //         map.put("product", p.getProduct());
+    //         map.put("amount", p.getAmount());
+    //     }
+
+    //     System.out.println(map.size());
+
+    //     return map;
+    // }
+
+    public Map<List<String>, List<Integer>> getProductList(Cart cart) {
+    
         List<CartStock> productList = cart.getCartStocks();
 
-        Map<String, Object> map = new HashMap<>();
+        List<String> products = new ArrayList<>();
+        List<Integer> amounts = new ArrayList<>();
+
+        Map<List<String>,  List<Integer>> map = new HashMap<>();
 
         for (CartStock p : productList) {
 
-            map.put("product", p.getProduct());
-            map.put("amount", p.getAmount());
+           products.add(p.getProduct().getName());
+           amounts.add(p.getAmount());
         }
+
+        map.put(products, amounts);
 
         return map;
     }
 
-    Float getCartTotalPrice(Cart cart){
+
+    public Float getCartTotalPrice(Cart cart){
 
         float totalPrice = 0;
 
