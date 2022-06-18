@@ -43,7 +43,7 @@ public class CartServiceTest {
     void setUp() {
 
         john = new Client("John Doe", "johndoe", "johnpass", "john@doe.com", "john house", 912345678);
-        john.setClient_location( new Coordinates(-39.80711f, 151.71425f) );
+        john.setClient_location( new Coordinates(-39.80711, 151.71425) );
         
         benuron = new Product("benuron", "benuron description", 2.10f, "bayern");
         brufen = new Product("brufen", "brufen description", 1.99f, "mylan");
@@ -71,8 +71,8 @@ public class CartServiceTest {
         Cart registeredCart = service.registerCart(validCart);
         assertThat( registeredCart ).isEqualTo( validCart );
 
+		assertThat(registeredCart.getId()).isEqualTo(validCart.getId());
 		Assertions.assertNotNull(registeredCart);
-		Assertions.assertNotNull(registeredCart.getId());
 		Assertions.assertEquals(registeredCart.getCartStocks(), listOfProducts);
         
     }

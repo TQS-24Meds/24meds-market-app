@@ -55,9 +55,10 @@ public class ProductServiceTest {
         Product registeredProduct = service.registerProduct(benuron);
         assertThat( registeredProduct ).isEqualTo( benuron );
 
-		Assertions.assertNotNull(registeredProduct);
-		Assertions.assertNotNull(registeredProduct.getId());
-		Assertions.assertEquals(registeredProduct.getName(), "benuron");
+		
+		assertThat(registeredProduct.getId()).isEqualTo(benuron.getId());
+        Assertions.assertNotNull(registeredProduct);
+        Assertions.assertEquals(registeredProduct.getName(), "benuron");
         
     }
 

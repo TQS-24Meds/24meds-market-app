@@ -27,7 +27,7 @@ public class PharmacyRepositoryTest extends RunTestContainer {
 
     @BeforeEach
     void setUp() {
-        Coordinates loc = new Coordinates(-39.80711f, 151.71425f);
+        Coordinates loc = new Coordinates(-39.80711, 151.71425);
         entityManager.persistAndFlush(loc);
 
         meds = new Pharmacy("24Meds", "Rua Colorida", loc);

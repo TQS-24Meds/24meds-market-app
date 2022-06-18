@@ -31,7 +31,7 @@ public class ClientRepositoryTest extends RunTestContainer {
         john = new Client("John Doe", "johndoe", "john@doe.com", "johnpass", "john house", 911111111);
         entityManager.persistAndFlush(john);
         
-        Coordinates loc = new Coordinates(-39.80711f, 151.71425f);
+        Coordinates loc = new Coordinates(-39.80711, 151.71425);
         entityManager.persistAndFlush(loc);
     }
 
@@ -104,9 +104,9 @@ public class ClientRepositoryTest extends RunTestContainer {
 
     @Test
     void whenFindAllClients_thenReturnAllClients() {
-        Coordinates dan_coor = new Coordinates(-19.07313f, -167.85151f);
-        Coordinates alice_coor = new Coordinates(24.00310f, -111.82589f);
-        Coordinates alex_coor = new Coordinates( -81.30103f, 1.1087723f);
+        Coordinates dan_coor = new Coordinates(-19.07313, -167.85151);
+        Coordinates alice_coor = new Coordinates(24.00310, -111.82589);
+        Coordinates alex_coor = new Coordinates( -81.30103, 1.1087723);
         entityManager.persist(dan_coor);
         entityManager.persist(alice_coor);
         entityManager.persist(alex_coor);

@@ -62,8 +62,6 @@ public class ClientService {
         return (Client) clientFoundByEmail.get();
     }
     
-
-    
     public Map<String, Object> convertClientToMap(Client client){
     
         Map<String, Object> mappedClient = new HashMap<>();
