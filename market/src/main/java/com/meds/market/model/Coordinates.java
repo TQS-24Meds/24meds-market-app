@@ -21,10 +21,10 @@ public class Coordinates {
     private int id;
 
     @Column(name = "lat", nullable = false)
-    private float lat;
+    private Double lat;
 
     @Column(name = "lon", nullable = false)
-    private float lon;
+    private Double lon;
 
     @JsonIgnore
     @OneToOne(mappedBy = "client_location")
@@ -35,7 +35,7 @@ public class Coordinates {
     private Pharmacy store;
 
     @Autowired
-    public Coordinates(float lat, float lon) {
+    public Coordinates(Double lat, Double lon) {
         this.lat = lat;
         this.lon = lon;
     }

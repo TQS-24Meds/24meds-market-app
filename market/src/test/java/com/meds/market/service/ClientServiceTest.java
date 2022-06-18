@@ -42,10 +42,10 @@ public class ClientServiceTest {
     @BeforeEach
     void setUp() {
         john = new Client("John Doe", "johndoe", "john@doe.com", "johnpass", "john house", 911111111);
-        john.setClient_location( new Coordinates(-39.80711f, 151.71425f) );
+        john.setClient_location( new Coordinates(-39.80711, 151.71425) );
 
-        alex = new Client("Alex Brain", "alexbrain", "alex@brain.com", "alexpass", "alex house", 922222222, new Coordinates(-39.80711f, 151.71425f));
-        dan = new Client("Dan Daniel", "dandaniel",  "dan@daniel.com", "danpass",  "dan house", 933333333, new Coordinates(-39.80711f, 151.71425f));
+        alex = new Client("Alex Brain", "alexbrain", "alex@brain.com", "alexpass", "alex house", 922222222, new Coordinates(-39.80711, 151.71425));
+        dan = new Client("Dan Daniel", "dandaniel",  "dan@daniel.com", "danpass",  "dan house", 933333333, new Coordinates(-39.80711, 151.71425));
         
         List<Client> allClients = Arrays.asList(john, alex, dan);
 
