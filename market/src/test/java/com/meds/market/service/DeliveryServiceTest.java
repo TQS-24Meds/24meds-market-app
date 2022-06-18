@@ -16,8 +16,6 @@ import com.meds.market.model.*;
 import com.meds.market.services.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertThrows;
-import org.mockito.internal.verification.VerificationModeFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
