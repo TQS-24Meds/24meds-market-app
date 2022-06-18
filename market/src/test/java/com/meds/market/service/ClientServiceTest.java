@@ -76,8 +76,8 @@ public class ClientServiceTest {
         Client registeredClient = service.registerClient(john);
         assertThat( registeredClient ).isEqualTo( john );
 
+		assertThat(registeredClient.getId()).isEqualTo(john.getId());
 		Assertions.assertNotNull(registeredClient);
-		Assertions.assertNotNull(registeredClient.getId());
 		Assertions.assertEquals(registeredClient.getUsername(), "johndoe");
 
         verifyFindByEmailIsCalledOnce(john.getEmail());

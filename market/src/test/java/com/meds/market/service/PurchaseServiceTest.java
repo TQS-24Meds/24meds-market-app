@@ -80,8 +80,8 @@ public class PurchaseServiceTest {
         Purchase registeredPurchase = service.registerPurchase(validPurchase);
         assertThat( registeredPurchase ).isEqualTo( validPurchase );
 
+		assertThat(registeredPurchase.getId()).isEqualTo(validPurchase.getId());
 		Assertions.assertNotNull(registeredPurchase);
-		Assertions.assertNotNull(registeredPurchase.getId());
 		Assertions.assertEquals(registeredPurchase.getStatus(), PurchaseStatusEnum.PENDENT);
         
     }

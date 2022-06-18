@@ -71,8 +71,8 @@ public class CartServiceTest {
         Cart registeredCart = service.registerCart(validCart);
         assertThat( registeredCart ).isEqualTo( validCart );
 
+		assertThat(registeredCart.getId()).isEqualTo(validCart.getId());
 		Assertions.assertNotNull(registeredCart);
-		Assertions.assertNotNull(registeredCart.getId());
 		Assertions.assertEquals(registeredCart.getCartStocks(), listOfProducts);
         
     }

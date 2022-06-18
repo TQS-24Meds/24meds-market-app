@@ -82,8 +82,8 @@ public class DeliveryServiceTest {
         Delivery registeredDelivery = service.registerDelivery(validDelivery);
         assertThat( registeredDelivery ).isEqualTo( validDelivery );
 
+		assertThat(registeredDelivery.getId()).isEqualTo(validDelivery.getId());
 		Assertions.assertNotNull(registeredDelivery);
-		Assertions.assertNotNull(registeredDelivery.getId());
 		Assertions.assertEquals(registeredDelivery.getClient_purchase().getStatus(), PurchaseStatusEnum.ACCEPTED);
         
     }
