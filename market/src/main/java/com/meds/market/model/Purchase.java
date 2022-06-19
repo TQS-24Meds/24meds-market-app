@@ -1,11 +1,11 @@
 package com.meds.market.model;
 
 import java.util.Date;
-import java.util.HashMap;
 
 import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.meds.market.enums.PurchaseStatusEnum;
 import com.meds.market.enums.PayTypeEnum;
@@ -27,11 +27,11 @@ public class Purchase {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_client")
+    @JoinColumn(name = "id_client", nullable = false)
     private Client client; 
 
     @CreationTimestamp
-    @Column(name = "timestamp")
+    @Column(name = "timestamp", nullable = false)
     private Date timestamp;
 
     @Column(name = "total_price", nullable = false)
@@ -43,33 +43,28 @@ public class Purchase {
     @Column(name = "pay_type", nullable = false)
     private PayTypeEnum pay_type;
 
-    @Column(name = "products_list", nullable = false)
-    private HashMap<Product, Double> product_list;
-
-    @Column(name = "qr_code", nullable = false) 
+    @Column(name = "qr_code") 
     private String qr_code;
 
     public Purchase(Client client) { 
         this.client = client;
-        this.product_list = new HashMap<>();
     }
 
-    public Purchase(Client client, float total_price, PurchaseStatusEnum status, PayTypeEnum pay_type, HashMap<Product, Double> product_list) {
+    @Autowired
+    public Purchase(Client client, PayTypeEnum pay_type) {
+        this.client = client;
+        this.timestamp = new Date();
+        this.status =  PurchaseStatusEnum.PENDENT;
+        this.pay_type = pay_type;
+    }
+
+    @Autowired
+    public Purchase(Client client, float total_price, PayTypeEnum pay_type, String qr_code) {
         this.client = client;
         this.timestamp = new Date();
         this.total_price = total_price;
-        this.status = status;
+        this.status =  PurchaseStatusEnum.PENDENT;
         this.pay_type = pay_type;
-        this.product_list = product_list;
-    }
-
-    public Purchase(Client client, Date timestamp, float total_price, PurchaseStatusEnum status, PayTypeEnum pay_type, String qr_code, HashMap<Product, Double> product_list) {
-        this.client = client;
-        this.timestamp = timestamp;
-        this.total_price = total_price;
-        this.status = status;
-        this.pay_type = pay_type;
-        this.product_list = product_list;
         this.qr_code = qr_code;
     }
 

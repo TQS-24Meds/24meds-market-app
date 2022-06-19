@@ -1,13 +1,12 @@
 package com.meds.market.service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.meds.market.enums.PurchaseStatusEnum;
+import com.meds.market.enums.*;
+import com.meds.market.exception.*;
 import com.meds.market.model.*;
 import com.meds.market.repository.*;
 
@@ -16,36 +15,44 @@ public class DeliveryService {
     
     @Autowired private DeliveryRepository deliveryRepository;
 
+    @Autowired private PurchaseRepository purchaseRepository;
+
     @Autowired private PurchaseService purchaseService;
 
-    Delivery placeDelivery(Delivery delivery) {
+    public Delivery registerDelivery(Delivery delivery) {
 
-        Purchase purchase = delivery.getPurchase();
-        Delivery newDelivery = new Delivery(purchase);
+        try { 
+            Purchase purchase = delivery.getClient_purchase();
+            purchaseService.updateStatus(purchase);
+            purchaseRepository.save(purchase);
 
-        purchaseService.updateStatus(purchase, PurchaseStatusEnum.ACCEPTED);
+            delivery.setClient_purchase(purchase);
 
-        newDelivery.setProduct_list(purchase.getProduct_list());
-        Delivery deliveryPlaced = deliveryRepository.save(newDelivery);
-
-        return deliveryPlaced;
-    }
-
-
-    Map<String, Object> getProductList(Delivery delivery) {
-        
-        Map<Product, Double> productList = delivery.getProduct_list();
-
-        Map<String, Object> map = new HashMap<>();
-
-        for (Entry<Product, Double> entry : productList.entrySet()) {
-
-            map.put("product", entry.getKey());
-            map.put("amount", entry.getValue());
+            return deliveryRepository.save(delivery);
         }
+        catch (Exception e) { throw new ObjectErrorException("Failed to register delivery!"); }
+    }
 
-        return map;
+    public Delivery getDelivery(int id) {
+        Optional<Delivery> deliveryFound = deliveryRepository.findById(id);
+
+        if (!deliveryFound.isPresent())
+            throw new ObjectErrorException("Delivery not found!");
+
+        return deliveryFound.get();
     }
 
 
+    public Delivery finishDelivery(Delivery delivery) {
+
+        try { 
+            Purchase purchase = delivery.getClient_purchase();
+
+            purchase.setStatus(PurchaseStatusEnum.DELIVERED);
+            purchaseRepository.save(purchase);
+
+            return deliveryRepository.save(delivery);
+        } 
+        catch (Exception e) { throw new ObjectErrorException("Failed to finish delivery!"); }
+    }
 }

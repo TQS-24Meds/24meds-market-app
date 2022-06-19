@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import lombok.*;
 
 @Data
@@ -20,19 +22,29 @@ public class Cart {
     @Column(name = "id_cart")
     private int id;
 
-    // @ManyToOne
-    // @JoinColumn(name = "id_client")
-    // private Client client; 
+    @ManyToOne
+    @JoinColumn(name = "id_client", nullable = false)
+    private Client client; 
 
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "cart", orphanRemoval = true)
-    private List<Product> product_list;
-    
-    @Column(name = "amount")
-    private int amount;
+    @OneToMany(mappedBy = "cart")
+    private List<CartStock> cartStocks;
 
-    public Cart(List<Product> product_list, int amount) {
-        this.product_list = product_list;
-        this.amount = amount;
+    @Autowired
+    public Cart(Client client, List<CartStock> cartStocks) {
+        this.client = client;
+        this.cartStocks = cartStocks;
+    }
+
+    public Cart(Client client) {
+        this.client = client;
     }
     
+    public Float getCartPrice() { 
+        // HashMap<Product, Integer> pl = new HashMap<>();
+
+        float totalPrice = 0;
+        for (CartStock stock : cartStocks){ totalPrice += stock.getSpecificStockPrice(); }
+
+        return totalPrice;
+    }
 }

@@ -15,13 +15,22 @@ public class ProductService {
     
     @Autowired private ProductRepository productRepository;
     
-    List<Product> getAllProducts(){ return productRepository.findAll(); }
+    public Product registerProduct(Product product) {
+        Product registeredProduct;
+
+        try { registeredProduct = productRepository.save(product); } 
+        catch (Exception e) { throw new ObjectErrorException("Failed to register product!"); }
+
+        return registeredProduct;
+    }
+
+    public List<Product> getAllProducts(){ return productRepository.findAll(); }
     
-    Product getProduct(int id){
+    public Product getProduct(int id){
         Optional<Product> productFound = productRepository.findById(id);
 
         if (!productFound.isPresent())
-            throw new ResourceNotFoundException("Product not found.");
+            throw new ResourceNotFoundException("Product not found!");
 
         return productFound.get();
     }

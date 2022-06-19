@@ -9,4 +9,5 @@ import com.meds.market.model.*;
 public interface PurchaseRepository extends JpaRepository<Purchase, Integer> {
     Optional<Purchase> findById(int id);
     Purchase findByClient(Client client);
+    Optional<Purchase> findByClientId(int client_id);
 }

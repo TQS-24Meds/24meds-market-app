@@ -1,9 +1,6 @@
 package com.meds.market.service;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
-import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,72 +14,40 @@ import com.meds.market.repository.*;
 public class PurchaseService {
     
     @Autowired private PurchaseRepository purchaseRepository;
-    
-    Purchase placePurchase(Purchase purchase) {
+
+    // @Autowired private CartService cartService;
+
+    public Purchase registerPurchase(Purchase purchase) {
         
-        Purchase newPurchase = new Purchase(purchase.getClient());
+        try { 
+            purchase.setTotal_price(purchase.getTotal_price());
+            purchase.setStatus(PurchaseStatusEnum.PENDENT);
+            purchase.setPay_type(purchase.getPay_type());
 
-        newPurchase.setTotal_price(getTotalPrice(purchase));
-        newPurchase.setStatus(PurchaseStatusEnum.PENDENT);
-        newPurchase.setPay_type(purchase.getPay_type());
-        newPurchase.setProduct_list(purchase.getProduct_list());
-        Purchase purchasePlaced = purchaseRepository.save(newPurchase);
+            return purchaseRepository.save(purchase); 
+        } 
+        catch (Exception e) { throw new ObjectErrorException("Failed to register purchase!"); }
 
-        return purchasePlaced;
+
     }
 
-
-    Purchase getPurchase(int id) {
+    public Purchase getPurchase(int id) {
         Optional<Purchase> purchaseFound = purchaseRepository.findById(id);
 
         if (!purchaseFound.isPresent())
-            throw new ResourceNotFoundException("Purchase not found.");
+            throw new ObjectErrorException("Purchase not found!");
 
         return purchaseFound.get();
     }
 
+    public Purchase updateStatus(Purchase purchase) {
 
-    Map<String, Object> getProductList(Purchase purchase) {
-        
-        Map<Product, Double> productList = purchase.getProduct_list();
+        try { 
+            PurchaseStatusEnum currentStatus = purchase.getStatus();
+            purchase.setStatus(PurchaseStatusEnum.getNext(currentStatus));
 
-        Map<String, Object> map = new HashMap<>();
-
-        for (Entry<Product, Double> entry : productList.entrySet()) {
-
-            map.put("product", entry.getKey());
-            map.put("amount", entry.getValue());
-        }
-
-        return map;
+            return purchaseRepository.save(purchase);
+        } 
+        catch (Exception e) { throw new ObjectErrorException("Failed to update purchase status!"); }
     }
-
-
-    public Purchase updateStatus(Purchase purchase, PurchaseStatusEnum status) {
-
-        if (status == PurchaseStatusEnum.PENDENT) purchase.setStatus(PurchaseStatusEnum.PENDENT);
-        else if (status == PurchaseStatusEnum.ACCEPTED) purchase.setStatus(PurchaseStatusEnum.ACCEPTED);
-        else if (status == PurchaseStatusEnum.PICKED_UP) purchase.setStatus(PurchaseStatusEnum.PICKED_UP);
-        else if (status == PurchaseStatusEnum.DELIVERED) purchase.setStatus(PurchaseStatusEnum.DELIVERED);
-
-        return purchaseRepository.save(purchase);
-
-    }
-
-
-    float getTotalPrice(Purchase purchase) {
-
-        float totalPrice = 0;
-
-        Map<Product, Double> productList = purchase.getProduct_list();
-
-        for (Entry<Product, Double> entry : productList.entrySet()) {
-
-            float product_price = entry.getKey().getProduct_price();
-            totalPrice += product_price;
-        }
-
-        return totalPrice;
-    }
-
 }

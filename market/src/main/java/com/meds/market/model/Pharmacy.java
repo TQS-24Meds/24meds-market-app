@@ -12,9 +12,8 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
-@Table(name = "store")
+@Table(name = "pharmacy")
 public class Pharmacy {
     
     @Id
@@ -33,6 +32,10 @@ public class Pharmacy {
         joinColumns = @JoinColumn(name = "id_pharmacy"),
         inverseJoinColumns = @JoinColumn(name = "id_product"))
     private List<Product> product_list;
+
+    // @OneToMany(cascade = CascadeType.ALL, mappedBy = "pharmacy", orphanRemoval = true)
+    // @JsonIgnore
+    // private List<Product> product_list;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_coordinates")

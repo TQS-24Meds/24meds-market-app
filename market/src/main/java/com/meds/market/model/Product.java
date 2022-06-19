@@ -6,6 +6,9 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+
 import lombok.*;
 
 @Data
@@ -29,18 +32,14 @@ public class Product {
     @JoinColumn(name = "product_list", nullable = false)
     private Set<Pharmacy> pharmacy; 
 
-    @ManyToOne
-    @JoinColumn(name="id_cart", nullable=false)
-    private Cart cart;
-
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     private String description;
     
-    @Column(name = "photo", nullable = false)
+    @Column(name = "photo")
     private String photo;
 
-    @Column(name = "product_price", nullable = false)
-    private float product_price;
+    @Column(name = "price", nullable = false)
+    private float price;
     
     @Column(name = "brand", nullable = false)
     private String brand;
@@ -48,20 +47,23 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Tags> tags;
 
+    // @OneToMany(mappedBy="product")
+    // private List<Stock> stock;
 
-    public Product(String name, String description, float product_price, String brand) {
+    @Autowired
+    public Product(String name, String description, float price, String brand) {
         this.name = name;
         this.description = description;
-        this.product_price = product_price;
+        this.price = price;
         this.brand = brand;
         this.tags = new ArrayList<>();
     }
 
-    public Product(String name, String description, String photo, float product_price, String brand) {
+    public Product(String name, String description, String photo, float price, String brand) {
         this.name = name;
         this.description = description;
         this.photo = photo;
-        this.product_price = product_price;
+        this.price = price;
         this.brand = brand;
         this.tags = new ArrayList<>();
     }
