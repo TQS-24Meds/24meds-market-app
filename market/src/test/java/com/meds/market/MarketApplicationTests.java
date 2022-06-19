@@ -10,7 +10,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 @SpringBootTest
-@Testcontainers
+
 @SuppressWarnings("rawtypes")
 class MarketApplicationTests {
 
