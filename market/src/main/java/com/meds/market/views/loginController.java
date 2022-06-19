@@ -1,5 +1,6 @@
 package com.meds.market.views;
 
+
 import javax.servlet.http.HttpSession;
 
 
@@ -17,7 +18,7 @@ import com.meds.market.services.ClientService;
 
 
 @Controller
-public class indexController {
+public class loginController {
 
     @Autowired
     ObjectFactory<HttpSession> httpSessionFactory;
@@ -25,16 +26,15 @@ public class indexController {
     @Autowired 
     ClientService clientsv;
 
-    @GetMapping("/index")
-    public ModelAndView index(Model model) throws NumberFormatException, ResourceNotFoundException {
+    @GetMapping("/login")
+    public ModelAndView login(Model model) throws NumberFormatException, ResourceNotFoundException {
       HttpSession session = httpSessionFactory.getObject();
       String clientmail= (String.valueOf(session.getAttribute("email_client"))); //not sure qual é o nome do ciusi
       Client client = clientsv.getClientByEmail(clientmail);
   
-      //prouct list
 
       ModelAndView modelAndView = new ModelAndView();
-      modelAndView.setViewName("index");
+      modelAndView.setViewName("login");
       return modelAndView;
     }
     

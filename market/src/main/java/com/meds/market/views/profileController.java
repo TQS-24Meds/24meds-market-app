@@ -17,7 +17,7 @@ import com.meds.market.services.ClientService;
 
 
 @Controller
-public class indexController {
+public class profileController {
 
     @Autowired
     ObjectFactory<HttpSession> httpSessionFactory;
@@ -25,16 +25,22 @@ public class indexController {
     @Autowired 
     ClientService clientsv;
 
-    @GetMapping("/index")
-    public ModelAndView index(Model model) throws NumberFormatException, ResourceNotFoundException {
+    @GetMapping("/profile")
+    public ModelAndView profile(Model model) throws NumberFormatException, ResourceNotFoundException {
       HttpSession session = httpSessionFactory.getObject();
       String clientmail= (String.valueOf(session.getAttribute("email_client"))); //not sure qual é o nome do ciusi
       Client client = clientsv.getClientByEmail(clientmail);
   
-      //prouct list
+
+        model.addAttribute("email", client.getEmail()); 
+        model.addAttribute("address", client.getAddress()); 
+        model.addAttribute("phone", client.getPhone()); 
+        model.addAttribute("name", client.getName()); 
+        model.addAttribute("username", client.getUsername()); 
+   
 
       ModelAndView modelAndView = new ModelAndView();
-      modelAndView.setViewName("index");
+      modelAndView.setViewName("profile");
       return modelAndView;
     }
     
