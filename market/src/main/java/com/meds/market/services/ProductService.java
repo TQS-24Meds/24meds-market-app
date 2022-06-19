@@ -1,4 +1,4 @@
-package com.meds.market.service;
+package com.meds.market.services;
 
 import java.util.List;
 import java.util.Optional;

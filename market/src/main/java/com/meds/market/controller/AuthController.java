@@ -18,8 +18,8 @@ import com.meds.market.request.LoginRequest;
 import com.meds.market.request.MessageResponse;
 import com.meds.market.security.auth.AuthTokenResponse;
 import com.meds.market.security.auth.JWTTokenUtils;
-import com.meds.market.service.PersonService;
-import com.meds.market.service.SpringUserDetailsService;
+import com.meds.market.services.PersonService;
+import com.meds.market.services.SpringUserDetailsService;
 
 @RestController
 @RequestMapping("/api/auth")

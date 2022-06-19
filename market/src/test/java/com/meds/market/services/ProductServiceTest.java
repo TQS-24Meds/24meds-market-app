@@ -1,4 +1,4 @@
-package com.meds.market.service;
+package com.meds.market.services;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,9 +10,9 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.meds.market.repository.*;
+import com.meds.market.services.*;
 import com.meds.market.exception.*;
 import com.meds.market.model.*;
-import com.meds.market.services.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThrows;

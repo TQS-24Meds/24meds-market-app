@@ -1,4 +1,4 @@
-package com.meds.market.service;
+package com.meds.market.services;
 
 import com.meds.market.model.Person;
 import com.meds.market.repository.PersonRepository;

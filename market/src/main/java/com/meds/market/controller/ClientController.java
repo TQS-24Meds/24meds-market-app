@@ -4,8 +4,8 @@ package com.meds.market.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.meds.market.services.*;
 import com.meds.market.model.*;
+import com.meds.market.services.ClientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
