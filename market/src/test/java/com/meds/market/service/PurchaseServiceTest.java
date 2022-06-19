@@ -118,7 +118,8 @@ public class PurchaseServiceTest {
         int validId = 1; // purchase id
         Purchase purchaseFound = service.getPurchase(validId);
         Purchase updatedPurchase = service.updateStatus(purchaseFound);
-
+        
+        assertThat(updatedPurchase).isEqualTo(purchaseFound);
         assertThat(updatedPurchase.getStatus()).isEqualTo(PurchaseStatusEnum.ACCEPTED);
     }
 

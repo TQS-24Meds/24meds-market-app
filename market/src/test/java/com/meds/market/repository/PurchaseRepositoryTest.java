@@ -19,7 +19,6 @@ import com.meds.market.model.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-
 public class PurchaseRepositoryTest extends RunTestContainer {
 // public class PurchaseRepositoryTest {
 
