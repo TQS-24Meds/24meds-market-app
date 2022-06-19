@@ -8,7 +8,6 @@ import org.testcontainers.utility.DockerImageName;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-//@Testcontainers
 public abstract class RunTestContainer {
   
   //@Container

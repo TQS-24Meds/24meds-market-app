@@ -14,7 +14,6 @@ import lombok.extern.log4j.Log4j2;
 @SpringBootTest
 class MarketApplicationTests {
 
-  //@Container
   static final MySQLContainer<?> container =
          new MySQLContainer<>(DockerImageName.parse("mysql:8.0"))
           .withDatabaseName("24Meds")
