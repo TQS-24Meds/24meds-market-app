@@ -10,5 +10,5 @@ import com.meds.market.model.Pharmacy;
 @Repository
 public interface PharmacyRepository extends JpaRepository<Pharmacy, Integer> {
     Optional<Pharmacy> findById(int id);
-    Pharmacy findByName(String name); //
+    Pharmacy findByName(String name);
 }
