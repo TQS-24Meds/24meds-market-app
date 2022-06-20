@@ -40,13 +40,14 @@ public class MarketApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
 		// asd
 		if (clientService.getAllClients().isEmpty()) {
 			Client c1 = new Client(
 					"Zeca Carvalho",
 					"user",
 					"zeca@ua.pt",
-					"123",
+					"123145847585",
 					"R. Dr. Mário Sacramento  ",
 					981233123,
 					new Coordinates(40.642493, -8.646368));
@@ -55,7 +56,7 @@ public class MarketApplication implements CommandLineRunner {
 					"Beatriz Silva",
 					"bia12",
 					"silva@ua.pt",
-					"12",
+					"123145847585",
 					"R. Dr. Mário Sacramento ",
 					901321123,
 					new Coordinates(40.642493, -8.626368));
@@ -64,7 +65,7 @@ public class MarketApplication implements CommandLineRunner {
 					"Carlota Rosa",
 					"rosa",
 					"rosa@ua.pt",
-					"1",
+					"123145847585",
 					"R. Dr. Mário Sacramento ",
 					991239123,
 					new Coordinates(40.632493, -8.646368));
@@ -155,7 +156,7 @@ public class MarketApplication implements CommandLineRunner {
 			productService.registerProduct(product8);
 			productService.registerProduct(product9);
 			productService.registerProduct(product10);
-
+			System.out.println("AAAAAAAAAAAA" + clientService.getAllClients());
 		}
 	}
 }
