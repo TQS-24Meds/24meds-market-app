@@ -1,6 +1,7 @@
 package com.meds.market.views;
 
 
+
 import javax.servlet.http.HttpSession;
 
 
@@ -13,12 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.meds.market.exception.ResourceNotFoundException;
 
+import com.meds.market.model.Cart;
+
 import com.meds.market.model.Client;
 import com.meds.market.services.ClientService;
 
 
 @Controller
-public class registerController {
+public class CartController {
 
     @Autowired
     ObjectFactory<HttpSession> httpSessionFactory;
@@ -26,17 +29,19 @@ public class registerController {
     @Autowired 
     ClientService clientsv;
 
-    @GetMapping("/register")
-    public ModelAndView register(Model model) throws NumberFormatException, ResourceNotFoundException {
+    @GetMapping("/cart")
+    public ModelAndView cart(Model model) throws NumberFormatException, ResourceNotFoundException {
       HttpSession session = httpSessionFactory.getObject();
       String clientmail= (String.valueOf(session.getAttribute("email_client"))); //not sure qual é o nome do ciusi
       Client client = clientsv.getClientByEmail(clientmail);
+      Cart cart = client.getCart();
   
-        //again ns se precisa destesdados
-
+      //prouct list
+      
 
       ModelAndView modelAndView = new ModelAndView();
-      modelAndView.setViewName("register");
+      modelAndView.addObject("cart", cart);
+      modelAndView.setViewName("shopping_cart");
       return modelAndView;
     }
     

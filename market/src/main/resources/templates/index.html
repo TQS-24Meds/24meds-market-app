@@ -64,10 +64,10 @@
     
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"  >
           
+        
                <li class="nav-item">
                 <a href="index.html" class="nav-link">
                   <i class="nav-icon fas fa-building" style='font-size:24px'></i>
@@ -120,72 +120,20 @@
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <div class="row">
+        <div class="row" th:each="product:${products}">
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg">
               <div class="inner">
                 <div class="inner">
-                  <h3>Paracetamol<sup style="font-size: 10px"></sup></h3>
-  
-                  <p>3.5€/500mg</p>
+                  <h3 th:text="${product.name}">  <sup style="font-size: 10px"></sup></h3>
+                  <p th:text="${product.price} + '€'"></p> 
                 </div>
-                  <img src="../static/img/products/paracetamol.png" alt="Simply Easy Learning" width="200">
+                  <img th:src="'img/products/'+${product.id}+'.jpg'" width="200">
               </div>
               <a href="#" class="small-box-footer" style="background-color:#29873C" onclick="myFunction()">Add to cart <i class="fa fa-shopping-cart"></i></a>
-              <a href="product.html" class="small-box-footer" style="color:#29873C"> Information <i class="fas fa-info-circle"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg">
-              <div class="inner">
-                <div class="inner">
-                  <h3>Paracetamol<sup style="font-size: 10px"></sup></h3>
-  
-                  <p>3.5€/500mg</p>
-                </div>
-                  <img src="../static/img/products/paracetamol.png" alt="Simply Easy Learning" width="200">
-              </div>
-              <a href="#" class="small-box-footer" style="background-color:#29873C" onclick="myFunction()">Add to cart <i class="fa fa-shopping-cart"></i></a>
-              <a href="product.html" class="small-box-footer" style="color:#29873C"> Information <i class="fas fa-info-circle"></i></a>
-
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg">
-              <div class="inner">
-                <div class="inner">
-                  <h3>Paracetamol<sup style="font-size: 10px"></sup></h3>
-  
-                  <p>3.5€/500mg</p>
-                </div>
-                  <img src="../static/img/products/paracetamol.png" alt="Simply Easy Learning" width="200">
-              </div>
-              <a href="#" class="small-box-footer" style="background-color:#29873C"  onclick="myFunction()">Add to cart <i class="fa fa-shopping-cart"></i></a>
-              <a href="product.html" class="small-box-footer" style="color:#29873C"> Information <i class="fas fa-info-circle"></i></a>
-
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg">
-              <div class="inner">
-                <div class="inner">
-                  <h3>Paracetamol<sup style="font-size: 10px"></sup></h3>
-  
-                  <p>3.5€/500mg</p>
-                </div>
-                  <img src="../static/img/products/cicloviral.png" alt="Simply Easy Learning" width="200">
-              </div>
-              <a href="#" class="small-box-footer" style="background-color:#29873C" onclick="myFunction()">Add to cart <i class="fa fa-shopping-cart"></i></a>
-              <a href="product.html" class="small-box-footer" style="color:#29873C"> Information <i class="fas fa-info-circle"></i></a>
-                  
-            </div>
+              <a th:href="@{'product/' + ${product.id}}" class="small-box-footer" style="color:#29873C"> Information <i class="fas fa-info-circle"></i></a>
+            </div> 
           </div>
           <!-- ./col -->
         </div>

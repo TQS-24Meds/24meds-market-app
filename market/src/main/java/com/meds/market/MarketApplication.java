@@ -53,6 +53,7 @@ public class MarketApplication implements CommandLineRunner {
 					new Coordinates(40.642493, -8.646368));
 			clientService.registerClient(c1);
 			Client c2 = new Client(
+				
 					"Beatriz Silva",
 					"bia12",
 					"silva@ua.pt",
@@ -82,19 +83,19 @@ public class MarketApplication implements CommandLineRunner {
 
 		if (productService.getAllProducts().isEmpty()) {
 			Product product1 = new Product(
-					"Xeratop, 500 ml",
-					"Correcaoo intensiva da pele seca, deslipidada e irritada",
+					"Xeratop",
+					"Correcao intensiva da pele seca, deslipidada e irritada",
 					"../static/img/products/assets/products/xeratop.png",
 					21.56f,
 					"Medinfar");
 			Product product2 = new Product(
-					"Zitrex, 60 caps",
+					"Zitrex",
 					"O Zinco contribui para a proteção as células contra as oxidações indesejáveis e para a manutenção de uma pele, cabelos e unhas normais",
 					"../static/img/products/assets/products/Zitrex.jpg",
 					15.50f,
 					"Medinfar");
 			Product product3 = new Product(
-					"Trifeduo, 500mg",
+					"Trifeduo",
 					"Alívio temporário de dores ligeiras a moderadas associadas a enxaquecas, dores de cabeça, lombalgias, dores menstruais, dores de dentes e dores musculares, sintomas de constipação e gripe, dores de garganta e febre, em adultos com idade igual ou superior a 18 anos.",
 					"../static/img/products/assets/products/trifeduo.jpeg",
 					6.1f,
@@ -106,19 +107,19 @@ public class MarketApplication implements CommandLineRunner {
 					8.20f,
 					"MNSRM");
 			Product product5 = new Product(
-					"LIDOFON,, 20mg",
+					"LIDOFON",
 					"Está indicado para o tratamento dos sintomas da garganta inflamada, garganta irritada, distúrbios da faringe e boca acompanhados por irritação, tais como gengivas inflamadas, mucosas inflamadas e aftas.",
 					"../static/img/products/assets/products/lidofon.jgg",
 					10.40f,
 					"Medinfar");
 			Product product6 = new Product(
-					"Niacide, 20mg",
+					"Niacide",
 					"Coadjuvante do Tratamento da Acne",
 					"../static/img/products/assets/products/nadiclox.png",
 					5.40f,
 					"MNSRM");
 			Product product7 = new Product(
-					"Paramolan, 24mg",
+					"Paramolan",
 					"Tratamento de dores ligeiras a moderadas, dores de garganta (excluindo" +
 							"amigdalites), cefaleias (dores de cabeça) ligeiras a moderadas. Está" +
 							"igualmente indicado no tratamento da febre de duração não superior a 3" +
@@ -156,7 +157,6 @@ public class MarketApplication implements CommandLineRunner {
 			productService.registerProduct(product8);
 			productService.registerProduct(product9);
 			productService.registerProduct(product10);
-			System.out.println("AAAAAAAAAAAA" + clientService.getAllClients());
 		}
 	}
 }
