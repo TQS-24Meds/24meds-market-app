@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.meds.market.exception.ResourceNotFoundException;
 
@@ -17,7 +16,7 @@ import com.meds.market.services.ClientService;
 
 
 @Controller
-public class profileController {
+public class ProfController {
 
     @Autowired
     ObjectFactory<HttpSession> httpSessionFactory;
