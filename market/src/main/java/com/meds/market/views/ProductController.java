@@ -25,7 +25,7 @@ import com.meds.market.services.CartService;
 
 
 @Controller
-public class productController {
+public class ProductController {
 
     @Autowired
     ObjectFactory<HttpSession> httpSessionFactory;
