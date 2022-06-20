@@ -1,5 +1,7 @@
 package com.meds.market.views;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 
@@ -10,10 +12,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
+
 import com.meds.market.exception.ResourceNotFoundException;
 
 import com.meds.market.model.Client;
+import com.meds.market.model.Product;
 import com.meds.market.services.ClientService;
+import com.meds.market.services.ProductService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -26,6 +32,10 @@ public class IndexController {
 
     @Autowired 
     ClientService clientsv;
+    
+    @Autowired 
+    ProductService productService;
+
 
     @GetMapping("/index")
     public ModelAndView index(Model model) throws NumberFormatException, ResourceNotFoundException {
@@ -35,7 +45,13 @@ public class IndexController {
 
       model.addAttribute("id_client", client.getId());
 
+
+
+      List<Product> products = productService.getAllProducts();
+      
+      model.addAttribute("id_client", client.getId());
       ModelAndView modelAndView = new ModelAndView();
+      modelAndView.addObject("products", products);
       modelAndView.setViewName("index");
       return modelAndView;
     }

@@ -8,10 +8,10 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback}">
   <!-- Font Awesome -->
-  <link rel="stylesheet" th:href="@{plugins/fontawesome-free/css/all.min.css}">
+  <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
   <!-- Theme style -->
-  <link rel="stylesheet" th:href="@{css/adminlte.min.css">
-  <link rel="stylesheet" th:href="@{css/cart.css">
+  <link rel="stylesheet" th:href="@{/css/adminlte.min.css}">
+  <link rel="stylesheet" th:href="@{/css/cart.css}">
 
 
 </head>
@@ -24,7 +24,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../../index.html" class="brand-link">
-      <img th:src="@{imgAdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img  th:src="@{/img/logo2.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">24Meds</span>
     </a>
 
@@ -91,32 +91,28 @@
         
 
             <!-- Profile Image -->
-            <div class="card card-primary card-outline" style="width:70%;">
+            <div class="card card-primary card-outline" style="width:70%;" >
               <div class="card-body box-profile">
                 <div class="text-center">
-                  <img width="30%"
-                       src="../static/img/paracetamol.png"
-                       alt="User profile picture">
+                  <img th:src="'/img/products/'+${product.id}+'.jpg'" width="200">
                 </div>
 
 
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Name</b> <a class="float-right">Paracetamol</a>
+                    <b>Name</b> <a class="float-right" th:text="${product.name}">  </a>
                   </li>
                   <li class="list-group-item">
-                    <b>Price</b> <a class="float-right">3.5€</a>
+                    <b>Price</b> <a class="float-right" th:text="${product.price}+'€'">3.5€</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Description</b> <a class="float-right"> Paracetamol (acetaminophen)</a>
+                    <b>Description</b> <a class="float-right" th:text="${product.description}"> </a>
                   </li>
                   <li class="list-group-item">
-                    <b>Brand </b> <a class="float-right">Infarmed</a>
+                    <b>Brand </b> <a class="float-right" th:text="${product.brand}">Infarmed</a>
                   </li>
-                  <li class="list-group-item">
-                    <b>Tags</b> <a class="float-right">Pain killer</a>
-                  </li>
+           
                 </ul>
                 <div style=" display: flex;justify-content: center;">
                     <div class="counter" >
@@ -163,13 +159,13 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script th:src="@{plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 <!-- Bootstrap 4 -->
-<script th:src="@{plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
-<script th:src="@{js/adminlte.min.js}"></script>
+<script th:src="@{/js/adminlte.min.js}"></script>
 <!-- AdminLTE for demo purposes -->
-<script th:src="@{plugins/js/demo.js}"></script>
+<script th:src="@{/plugins/js/demo.js}"></script>
 <script th:src="@{https://code.iconify.design/2/2.2.1/iconify.min.js}"></script>
 
 </body>

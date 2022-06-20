@@ -32,7 +32,6 @@ public class RegisterController {
       String clientmail= (String.valueOf(session.getAttribute("email_client"))); //not sure qual é o nome do ciusi
       Client client = clientsv.getClientByEmail(clientmail);
   
-        //again ns se precisa destesdados
 
 
       ModelAndView modelAndView = new ModelAndView();

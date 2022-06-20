@@ -41,25 +41,24 @@ public class ProductController {
 
 
     @GetMapping("/product/{productid}")
-    public ModelAndView getProductById(@PathVariable(value="productId") int productid, Model model) throws NumberFormatException, ResourceNotFoundException {
+    public ModelAndView getProductById(@PathVariable(value="productid") int productid, Model model) throws NumberFormatException, ResourceNotFoundException {
       HttpSession session = httpSessionFactory.getObject();
-      String clientmail= (String.valueOf(session.getAttribute("email_client"))); //not sure qual é o nome do ciusi
+      String clientmail= (String.valueOf(session.getAttribute("email"))); //not sure qual é o nome do ciusi
       Client client = clientsv.getClientByEmail(clientmail);
-    Product product = productService.getProduct(productid);
-
-
-        Cart cart = client.getCart();
+      Product product = productService.getProduct(productid);
+      int product_id = product.getId();
+      System.out.println("Product");
+      Cart cart = client.getCart();
 
 
 
       ModelAndView modelAndView = new ModelAndView();
+      modelAndView.addObject("product", product);
+      modelAndView.addObject("id", product_id);
 
       modelAndView.setViewName("product");
       return modelAndView;
     }
-
-    //Em ies tinhasmos um @resquestbody mas isso são os restcontrollers acho? se for preciso adicionamos aqui
-    //para  o metodo de baixo  é igual ao de cima com um nome diferente i guess
 
     @GetMapping("/product/{productid}/description")
     public ModelAndView getProductDescriptionById(@PathVariable(value="productId") int productid, Model model) throws NumberFormatException, ResourceNotFoundException {
