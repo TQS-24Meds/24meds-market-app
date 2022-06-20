@@ -48,6 +48,5 @@ public class Pharmacy {
         this.product_list = new ArrayList<>();
     }
 
-    //new Pharmacy("Farmacia Central", " Rua dos Mercadores 26 28, 3800-225 Aveiro", new Coordinates(	40.642493,  -8.646368));
 
 }
