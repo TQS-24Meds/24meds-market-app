@@ -4,15 +4,16 @@ package com.meds.market.model;
 public class LoginCredentials {
 
 
-    private String clientmail;
+    private String email;
     private String password;
   
-    public String getclientmail() { return clientmail; }
+    public String getEmail() { return email; }
   
-    public void setClientMail(String clientmail) { this.clientmail = clientmail; }
+    public void setEmail(String email) { this.email = email; }
   
     public String getPassword() { return password; }
   
     public void setPassword(String password) { this.password = password; }
+
   
   }

@@ -15,7 +15,9 @@ import com.meds.market.exception.ResourceNotFoundException;
 import com.meds.market.model.Client;
 import com.meds.market.services.ClientService;
 
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Controller
 public class indexController {
 
@@ -28,10 +30,10 @@ public class indexController {
     @GetMapping("/index")
     public ModelAndView index(Model model) throws NumberFormatException, ResourceNotFoundException {
       HttpSession session = httpSessionFactory.getObject();
-      String clientmail= (String.valueOf(session.getAttribute("email_client"))); //not sure qual é o nome do ciusi
+      String clientmail= (String.valueOf(session.getAttribute("email"))); //not sure qual é o nome do ciusi
       Client client = clientsv.getClientByEmail(clientmail);
-  
-      //prouct list
+      log.info("AAAaaaaAA:" + clientmail);
+      model.addAttribute("id_client", client.getId());
 
       ModelAndView modelAndView = new ModelAndView();
       modelAndView.setViewName("index");
