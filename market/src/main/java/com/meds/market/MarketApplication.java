@@ -83,37 +83,37 @@ public class MarketApplication implements CommandLineRunner {
 			Product product1 = new Product(
 					"Xeratop, 500 ml",
 					"Correcaoo intensiva da pele seca, deslipidada e irritada",
-					"../resources/static/assets/products/xeratop.png",
+					"../static/img/products/assets/products/xeratop.png",
 					21.56f,
 					"Medinfar");
 			Product product2 = new Product(
 					"Zitrex, 60 caps",
 					"O Zinco contribui para a proteção as células contra as oxidações indesejáveis e para a manutenção de uma pele, cabelos e unhas normais",
-					"../resources/static/assets/products/Zitrex.jpg",
+					"../static/img/products/assets/products/Zitrex.jpg",
 					15.50f,
 					"Medinfar");
 			Product product3 = new Product(
 					"Trifeduo, 500mg",
 					"Alívio temporário de dores ligeiras a moderadas associadas a enxaquecas, dores de cabeça, lombalgias, dores menstruais, dores de dentes e dores musculares, sintomas de constipação e gripe, dores de garganta e febre, em adultos com idade igual ou superior a 18 anos.",
-					"../resources/static/assets/products/trifeduo.jpeg",
+					"../static/img/products/assets/products/trifeduo.jpeg",
 					6.1f,
 					"Trifene");
 			Product product4 = new Product(
 					"Proton, 20 mg",
 					"Utilizado em adultos para o tratamento de curto prazo dos sintomas de refluxo (por exemplo, azia e regurgitação ácida).",
-					"../resources/static/assets/products/proton.jpg",
+					"../static/img/products/assets/products/proton.jpg",
 					8.20f,
 					"MNSRM");
 			Product product5 = new Product(
 					"LIDOFON,, 20mg",
 					"Está indicado para o tratamento dos sintomas da garganta inflamada, garganta irritada, distúrbios da faringe e boca acompanhados por irritação, tais como gengivas inflamadas, mucosas inflamadas e aftas.",
-					"../resources/static/assets/products/lidofon.jgg",
+					"../static/img/products/assets/products/lidofon.jgg",
 					10.40f,
 					"Medinfar");
 			Product product6 = new Product(
 					"Niacide, 20mg",
 					"Coadjuvante do Tratamento da Acne",
-					"../resources/static/assets/products/nadiclox.png",
+					"../static/img/products/assets/products/nadiclox.png",
 					5.40f,
 					"MNSRM");
 			Product product7 = new Product(
@@ -122,26 +122,26 @@ public class MarketApplication implements CommandLineRunner {
 							"amigdalites), cefaleias (dores de cabeça) ligeiras a moderadas. Está" +
 							"igualmente indicado no tratamento da febre de duração não superior a 3" +
 							"dias, e no tratamento sintomático de síndromes gripais e constipações.",
-					"../resources/static/assets/products/paramolan.png",
+					"../static/img/products/assets/products/paramolan.png",
 					7.40f,
 					"Medinfar");
 			Product product8 = new Product(
 					"Sterispray",
 					"Desinfetante das mãos para utilização frequente, garantindo a higiene e suavidade, sem agredir a pele.",
-					"../resources/static/assets/products/sterispray.png",
+					"../static/img/products/assets/products/sterispray.png",
 					3.5f,
 					"Medinfar");
 
 			Product product9 = new Product(
 					"Cicloviral",
 					"Tratamento do herpes labial enquanto lesão resultante da infeção por vírus Herpes Simplex tipo.",
-					"../resources/static/assets/products/cicloviral.png",
+					"../static/img/products/assets/products/cicloviral.png",
 					10.5f,
 					"Medinfar");
 			Product product10 = new Product(
 					"Maxilase",
 					"Tratamento eficaz da dor de ganta",
-					"../resources/static/assets/products/maxilase.jpg",
+					"../static/img/products/assets/products/maxilase.jpg",
 					7.2f,
 					"Medinfar");
 

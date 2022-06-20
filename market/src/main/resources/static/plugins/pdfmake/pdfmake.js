@@ -65822,13 +65822,13 @@ var GSUBProcessor = /*#__PURE__*/function (_OTProcessor) {
       case 4:
         {
           // Ligature Substitution
-          var _index3 = this.coverageIndex(table.coverage);
+          var _index = this.coverageIndex(table.coverage);
 
-          if (_index3 === -1) {
+          if (_index === -1) {
             return false;
           }
 
-          for (var _iterator60 = _createForOfIteratorHelperLoose(table.ligatureSets.get(_index3)), _step60; !(_step60 = _iterator60()).done;) {
+          for (var _iterator60 = _createForOfIteratorHelperLoose(table.ligatureSets.get(_index)), _step60; !(_step60 = _iterator60()).done;) {
             var ligature = _step60.value;
             var matched = this.sequenceMatchIndices(1, ligature.components);
 
