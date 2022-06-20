@@ -40,7 +40,7 @@ public class Client {
 
     @JsonIgnore
     @Column(name = "password", nullable = false)
-    @Size(min = 8)
+//    @Size(min = 8)
     private String password;
 
     @Column(name = "address", nullable = false)
@@ -49,7 +49,7 @@ public class Client {
     @Column(name = "phone", nullable = false)
     private int phone;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_coordinates")
     private Coordinates client_location;
 

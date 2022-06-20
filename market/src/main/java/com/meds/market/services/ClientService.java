@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.meds.market.exception.*;
@@ -20,7 +19,6 @@ public class ClientService {
 
     @Autowired private CoordinatesRepository coordRepository;
 
-    @Autowired private PasswordEncoder passwordEncoder;
 
     public Client registerClient(Client client) throws DuplicatedObjectException {
         
@@ -33,7 +31,7 @@ public class ClientService {
 
         if (clientFoundByEmail.isPresent()) { throw new DuplicatedObjectException("The provided email is already being used!"); }
 
-        client.setPassword(passwordEncoder.encode(client.getPassword()));
+        client.setPassword(client.getPassword());
         coordRepository.save(client.getClient_location());
 
         return clientRepository.save(client);

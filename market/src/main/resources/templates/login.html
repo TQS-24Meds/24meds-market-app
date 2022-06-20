@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" th:href="@{plugins/fontawesome-free/css/all.min.css}}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" th:href="@{plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{css/adminlte.min.css}">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline ">
+    <div class="card-header text-center">
+        <img th:src="@{img/logo2.png}" alt="Description for image" width="250" height="250">
+    </div>
+
+    <div class="card-body">
+      <p class="login-box-msg">Sign in to start shopping</p>
+
+      <form action="../../index.html" method="post">
+        <div class="input-group mb-3">
+          <input type="email" class="form-control" placeholder="Email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+            <button type="submit" style="color: #fff;
+            background-color: #29873C;
+            border-color: #29873C;
+            box-shadow: none; " class="btn btn-primary btn-block">Sign In</button>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <p class="mb-3 mt-3 ">
+        <a href="register.html"  class="mt-3" style="text-align:center; color: #29873C">  Register a new membership</a>
+      </p>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script th:src="@{plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{js/adminlte.min.js}"></script>
+</body>
+</html>

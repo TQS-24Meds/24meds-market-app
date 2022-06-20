@@ -8,7 +8,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.meds.market.repository.*;
 import com.meds.market.exception.*;
@@ -33,7 +32,6 @@ public class ClientServiceTest {
 
     @Mock(lenient = true) private CoordinatesRepository coordRepository;
 
-    @Mock(lenient = true) private PasswordEncoder passwordEncoder;
     
     @InjectMocks private ClientService service;
 
@@ -50,7 +48,7 @@ public class ClientServiceTest {
         List<Client> allClients = Arrays.asList(john, alex, dan);
 
         Mockito.when(repository.save(any(Client.class))).thenReturn(john);
-        Mockito.when(passwordEncoder.encode(any(String.class))).thenReturn(john.getPassword());
+        Mockito.when(any(String.class)).thenReturn(john.getPassword());
         Mockito.when(coordRepository.save(any(Coordinates.class))).thenReturn(john.getClient_location());
 
         // set alex email as duplicate
