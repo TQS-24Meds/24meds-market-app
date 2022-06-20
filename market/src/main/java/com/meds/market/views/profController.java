@@ -17,7 +17,7 @@ import com.meds.market.services.ClientService;
 
 
 @Controller
-public class profileController {
+public class profController {
 
     @Autowired
     ObjectFactory<HttpSession> httpSessionFactory;
