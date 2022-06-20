@@ -31,7 +31,6 @@ public class ClientServiceTest {
     @Mock(lenient = true) private ClientRepository repository;
 
     @Mock(lenient = true) private CoordinatesRepository coordRepository;
-
     
     @InjectMocks private ClientService service;
 
@@ -48,7 +47,6 @@ public class ClientServiceTest {
         List<Client> allClients = Arrays.asList(john, alex, dan);
 
         Mockito.when(repository.save(any(Client.class))).thenReturn(john);
-        Mockito.when(any(String.class)).thenReturn(john.getPassword());
         Mockito.when(coordRepository.save(any(Coordinates.class))).thenReturn(john.getClient_location());
 
         // set alex email as duplicate
