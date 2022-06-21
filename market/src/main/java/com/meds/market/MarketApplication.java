@@ -53,7 +53,7 @@ public class MarketApplication implements CommandLineRunner {
 					new Coordinates(40.642493, -8.646368));
 			clientService.registerClient(c1);
 			Client c2 = new Client(
-				
+
 					"Beatriz Silva",
 					"bia12",
 					"silva@ua.pt",
@@ -158,5 +158,6 @@ public class MarketApplication implements CommandLineRunner {
 			productService.registerProduct(product9);
 			productService.registerProduct(product10);
 		}
+		
 	}
 }

@@ -32,7 +32,7 @@ public class CartController {
     @GetMapping("/cart")
     public ModelAndView cart(Model model) throws NumberFormatException, ResourceNotFoundException {
       HttpSession session = httpSessionFactory.getObject();
-      String clientmail= (String.valueOf(session.getAttribute("email_client"))); //not sure qual é o nome do ciusi
+      String clientmail= (String.valueOf(session.getAttribute("email"))); //not sure qual é o nome do ciusi
       Client client = clientsv.getClientByEmail(clientmail);
       Cart cart = client.getCart();
   
@@ -41,7 +41,7 @@ public class CartController {
 
       ModelAndView modelAndView = new ModelAndView();
       modelAndView.addObject("cart", cart);
-      modelAndView.setViewName("shopping_cart");
+      modelAndView.setViewName("cart");
       return modelAndView;
     }
     

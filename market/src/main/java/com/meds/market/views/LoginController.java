@@ -61,16 +61,12 @@ public class LoginController {
   public RedirectView loginChecking(@ModelAttribute LoginCredentials loginCredentials, Model model)
       throws NumberFormatException, ResourceNotFoundException {
     HttpSession session = httpSessionFactory.getObject();
-    log.info("SESSION : "+  session);
+   
     String email = loginCredentials.getEmail();
     log.info("email " + email);
     String password = loginCredentials.getPassword();
     Client client = clientsv.getClientByEmail(email);
-    log.info("ID::::::::::" + client.getId());
-    log.info("Client::::::::::" + client.getEmail());
-    log.info("Client::::::::::" + client.getPassword());
-    log.info("password introduzida::::::::::" + password);
-    log.info("são iguais?"  + password.equals(client.getPassword()));
+  
 
 
     if (client.getPassword().equals(password)) {
