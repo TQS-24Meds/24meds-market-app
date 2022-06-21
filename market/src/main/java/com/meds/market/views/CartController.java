@@ -2,6 +2,9 @@ package com.meds.market.views;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 
@@ -17,9 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.meds.market.exception.ResourceNotFoundException;
 
 import com.meds.market.model.Cart;
-
+import com.meds.market.model.CartStock;
 import com.meds.market.model.Client;
+import com.meds.market.model.Product;
 import com.meds.market.services.ClientService;
+import com.meds.market.services.ProductService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -33,6 +38,9 @@ public class CartController {
     @Autowired 
     ClientService clientsv;
 
+    @Autowired
+    ProductService productService;
+
     @GetMapping("/cart")
     public ModelAndView cart(Model model) throws NumberFormatException, ResourceNotFoundException {
 
@@ -44,14 +52,23 @@ public class CartController {
       log.info("CART: " + cart);
 
       ModelAndView modelAndView = new ModelAndView();
-      modelAndView.addObject("cart", cart);
+      session.setAttribute("cart", cart);
       modelAndView.setViewName("cart");
       return modelAndView;
     }
     
-    @PostMapping("/cart")
-    public void cartPost(@RequestParam(value = "productName", required = false) String productName) {
-      log.info("product name: " + productName);
-    }
+    /* @PostMapping("/cart")
+    public void cartPost(@RequestParam(value = "productName", required = false) String productName, @RequestParam(value = "productAmount", required = false) int productAmount) {
+      HttpSession session = httpSessionFactory.getObject();
+      if (productName != null) {
+        Product product = productService.getProductByName(productName);
+        Cart cart = (Cart) session.getAttribute("cart");
+        CartStock cartStock = new CartStock(product, productAmount);
+        List<CartStock> stocks = new ArrayList<>();
+        stocks.add(cartStock);
+        cart.setCartStocks(stocks);
+        log.info("is this okay? " + cart);
+      }
+    }  */
     
 }
