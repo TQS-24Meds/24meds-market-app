@@ -11,15 +11,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
 public class MarketApplication implements CommandLineRunner {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MarketApplication.class, args);
-	}
-
-	// paulo
-	@Autowired
+	@Autowired 
 	CartService cartService;
 
 	@Autowired
@@ -38,7 +32,11 @@ public class MarketApplication implements CommandLineRunner {
 	@Autowired
 	PurchaseService purchaseService;
 
-	@Override
+	public static void main(String[] args) {
+		SpringApplication.run(MarketApplication.class, args);
+	}
+
+	
 	public void run(String... args) throws Exception {
 
 		// asd
