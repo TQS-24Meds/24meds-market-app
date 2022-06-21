@@ -35,4 +35,11 @@ public class ProductService {
         return productFound.get();
     }
 
+    public Product getProductByName(String name){
+        Optional<Product> productFoundByUsername = productRepository.findByName(name);
+
+        if (!productFoundByUsername.isPresent()) { throw new ResourceNotFoundException("Product not found!"); }
+        return (Product) productFoundByUsername.get();
+    }
+
 }
