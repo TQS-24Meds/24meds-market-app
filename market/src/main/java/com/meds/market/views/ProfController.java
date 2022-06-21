@@ -40,5 +40,4 @@ public class ProfController {
     modelAndView.setViewName("profile");
     return modelAndView;
   }
-
 }

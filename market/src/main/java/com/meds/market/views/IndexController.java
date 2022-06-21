@@ -32,7 +32,7 @@ public class IndexController {
 
     @Autowired 
     ClientService clientsv;
-    
+      
     @Autowired 
     ProductService productService;
 
@@ -42,15 +42,15 @@ public class IndexController {
       HttpSession session = httpSessionFactory.getObject();
       String clientmail= (String.valueOf(session.getAttribute("email"))); //not sure qual é o nome do ciusi
       Client client = clientsv.getClientByEmail(clientmail);
-      log.info("AAAaaaaAA:" + clientmail);
 
-
+      model.addAttribute("id_client", client.getId());
 
       List<Product> products = productService.getAllProducts();
       
       model.addAttribute("id_client", client.getId());
       ModelAndView modelAndView = new ModelAndView();
       modelAndView.addObject("products", products);
+      session.setAttribute("products", products);
       modelAndView.setViewName("index");
       return modelAndView;
     }

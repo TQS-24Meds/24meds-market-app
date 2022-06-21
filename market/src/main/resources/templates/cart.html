@@ -36,7 +36,7 @@
                  with font-awesome or any other icon font library -->
             
                  <li class="nav-item">
-                  <a  th:href="@{index}" class="nav-link">
+                  <a th:href="@{index}" class="nav-link">
                     <i class="nav-icon fas fa-building" style='font-size:24px'></i>
                     <p>
                       Store
@@ -86,57 +86,92 @@
               <li class="subtotal">Subtotal</li>
             </ul>
           </div>
-          <div class="basket-product">
-            <div class="item">
-              <div class="product-image" style="width:100px"> 
-                <img src="../static/img/products/paracetamol.png"alt="Placholder Image 2" class="product-frame">
-              </div>
-              <div class="product-details">
-                <h5><strong><span class="item-quantity">4x</span> Paracetamol </strong><p style="font-size: 16px"> 20 mg</p></h5>
-                <p style="font-size: 13px">Product Code - 232321939</p>
-              </div>
-            </div>
-            <div class="price">6</div>
-            <div class="quantity">
-              <input type="number" value="4" min="1" class="quantity-field">
-            </div>
-            <div class="subtotal">24.00</div>
-            <div class="remove">
-              <a type="submit" class="btn btn-danger" onClick="" value="REMOVE" >Remove</a>
-            </div>
+          
+          <div class="basket-product" id="basket-product">
           </div>
-          <div class="basket-product">
-            <div class="item">
-              <div class="product-image"  style="width:100px">
-                <img src="../static/img/products/paracetamol.png"alt="Placholder Image 2" class="product-frame">
-              </div>
-              <div class="product-details">
-                <h5><strong><span class="item-quantity">1x</span> Brufen</strong><p style="font-size: 16px"> 20 mg</p></h5>
-                <p style="font-size: 13px">Product Code - 232321939</p>
-              </div>
-            </div>
-            <div class="price">6</div>
-            <div class="quantity">
-              <input type="number" value="1" min="1" class="quantity-field">
-            </div>
-            <div class="subtotal">6.00</div>
-            <div class="remove">
-              <a type="submit" class="btn btn-danger" onClick="" value="REMOVE" >Remove</a>
-            </div>
-          </div>
+
+          <script>
+            let productAmount = localStorage.getItem('productAmount')
+            let productName = localStorage.getItem('productName')
+            let productPrice = localStorage.getItem('productPrice')
+            let productBrand = localStorage.getItem('productBrand')
+            let productPhoto = localStorage.getItem('productPhoto')
+            
+            let basketProduct = document.querySelector(".basket-product")
+        
+            let item = document.createElement("div")
+            item.classList.add("item")
+        
+            let productImage = document.createElement("div")
+            productImage.classList.add("product-image")
+            productImage.style.width = '100px'
+            let productImageSrc = document.createElement("img")
+            productImageSrc.setAttribute('src', productPhoto )
+            productImageSrc.classList.add("product-frame")
+        
+            let productDetails = document.createElement("div")
+            productDetails.classList.add("product-details")
+        
+            let productNameDiv = document.createElement("h5")
+            let productNameDivStrong = document.createElement("strong")
+            productNameDivStrong.innerText = productName
+            
+            let productPriceDiv = document.createElement("div")
+            productPriceDiv.classList.add("price")
+            productPriceDiv.innerText = productPrice
+        
+            let quantity = document.createElement("div")
+            quantity.classList.add("quantity")
+            let inputQuantity = document.createElement("input")
+            inputQuantity.classList.add("quantity-field")
+            inputQuantity.setAttribute('type', 'number')
+            inputQuantity.setAttribute('min', 1)
+            inputQuantity.setAttribute('value', productAmount)
+        
+            let subtotal = document.createElement("div")
+            subtotal.classList.add("subtotal")
+            subtotal.innerText=parseFloat(productPrice*productAmount).toFixed(2);
+        
+            let remove = document.createElement("div")
+            remove.classList.add("remove")
+            let removeA = document.createElement("a")
+            removeA.classList.add("btn")
+            removeA.classList.add("btn-danger")
+        
+            removeA.setAttribute('type', 'submit')
+            removeA.setAttribute('value', 'REMOVE')
+            removeA.innerText="Remove"
+            
+            productImage.appendChild(productImageSrc)
+            productDetails.appendChild(productNameDiv)
+            productNameDiv.appendChild(productNameDivStrong)
+        
+            quantity.appendChild(inputQuantity)
+            remove.appendChild(removeA)
+        
+            item.appendChild(productImage)
+            item.appendChild(productDetails)
+            
+            basketProduct.appendChild(item)
+            basketProduct.appendChild(productPriceDiv)
+            basketProduct.appendChild(quantity)
+            basketProduct.appendChild(subtotal)
+            basketProduct.appendChild(remove)
+          </script>
+          
         </div>
 
         <aside>
           <div class="summary mt-5" style="top: 85px; position: absolute">
-            <div class="summary-total-items"><span class="total-items"></span>Items in your Cart</div>
+            <div class="summary-total-items" style="margin-bottom: 10px"><span class="total-items"></span>Are you all set?</div>
 
-            <div class="summary-total">
+            <!-- <div class="summary-total">
               <div class="total-title">Total</div>
               <div class="total-value final-value" id="basket-total">30.00</div>
-            </div>
+            </div> -->
             <div>
-              <a href="confirm_order.html">
-                <button class="checkout-cta" style="background-color: #29873C; color: #ffffff;" type="submit" class="btn ">Confirm Purchase</button>
+              <a th:href="@{confirm_order}" >
+                <button class="checkout-cta" style="background-color: #29873C; color: #ffffff;" type="submit">Confirm Purchase</button>
               </a>
             </div>
           </div>

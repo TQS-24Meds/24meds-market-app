@@ -47,10 +47,7 @@ public class ProductController {
       Client client = clientsv.getClientByEmail(clientmail);
       Product product = productService.getProduct(productid);
       int product_id = product.getId();
-      System.out.println("Product");
       Cart cart = client.getCart();
-
-
 
       ModelAndView modelAndView = new ModelAndView();
       modelAndView.addObject("product", product);
@@ -65,21 +62,18 @@ public class ProductController {
         HttpSession session = httpSessionFactory.getObject();
         String clientmail= (String.valueOf(session.getAttribute("email_client"))); //not sure qual é o nome do ciusi
         Client client = clientsv.getClientByEmail(clientmail);
-      Product product = productService.getProduct(productid);
-      model.addAttribute("name",product.getName());
-      model.addAttribute("brand",product.getBrand());
-      model.addAttribute("description",product.getDescription());
-      model.addAttribute("photo",product.getPhoto());
-      model.addAttribute("price",product.getPrice());
-      model.addAttribute("tags",product.getTags());
+        Product product = productService.getProduct(productid);
+        model.addAttribute("name",product.getName());
+        model.addAttribute("brand",product.getBrand());
+        model.addAttribute("description",product.getDescription());
+        model.addAttribute("photo",product.getPhoto());
+        model.addAttribute("price",product.getPrice());
+        model.addAttribute("tags",product.getTags());
       
-  
-          Cart cart = client.getCart();
-  
-  
-  
+        Cart cart = client.getCart();
+
         ModelAndView modelAndView = new ModelAndView();
-  
+
         modelAndView.setViewName("product_description");
         return modelAndView;
       }

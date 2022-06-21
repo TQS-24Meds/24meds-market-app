@@ -25,6 +25,7 @@
     <!-- Brand Logo -->
     <a href="../../index.html" class="brand-link">
       <img  th:src="@{/img/logo2.png}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
+
       <span class="brand-text font-weight-light">24Meds</span>
     </a>
 
@@ -97,31 +98,21 @@
                   <img th:src="'/img/products/'+${product.id}+'.jpg'" width="200">
                 </div>
 
-
-
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Name</b> <a class="float-right" th:text="${product.name}">  </a>
+                    <b>Name</b> <a class="float-right" th:text="${product.name}"></a>
                   </li>
                   <li class="list-group-item">
-                    <b>Price</b> <a class="float-right" th:text="${product.price}+'€'">3.5€</a>
+                    <b>Price</b> <a class="float-right" th:text="${product.price}+'€'"></a>
                   </li>
                   <li class="list-group-item">
-                    <b>Description</b> <a class="float-right" th:text="${product.description}"> </a>
+                    <b>Description</b> <a class="float-right" th:text="${product.description}"></a>
                   </li>
                   <li class="list-group-item">
-                    <b>Brand </b> <a class="float-right" th:text="${product.brand}">Infarmed</a>
+                    <b>Brand </b> <a class="float-right" th:text="${product.brand}"></a>
                   </li>
            
                 </ul>
- 
-              
-                     
-                    </form>
-                  </div>
-                  <!-- /.tab-pane -->
-                </div>
-                <!-- /.tab-content -->
               </div><!-- /.card-body -->
             </div>
             <!-- /.card -->
