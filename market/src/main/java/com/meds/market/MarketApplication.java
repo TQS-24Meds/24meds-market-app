@@ -6,11 +6,13 @@ import com.meds.market.model.*;
 import com.meds.market.repository.*;
 import com.meds.market.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class MarketApplication implements CommandLineRunner {
 
 	@Autowired 
