@@ -8,10 +8,10 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback}">
   <!-- Font Awesome -->
-  <link rel="stylesheet" th:href="@{plugins/fontawesome-free/css/all.min.css}">
+  <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
   <!-- Theme style -->
-  <link rel="stylesheet" th:href="@{css/adminlte.min.css}">
-  <link rel="stylesheet" th:href="@{css/cart.css}">
+  <link rel="stylesheet" th:href="@{/css/adminlte.min.css}">
+  <link rel="stylesheet" th:href="@{/css/cart.css}">
 
 
 </head>
@@ -90,27 +90,28 @@
             <!-- Profile Image -->
             <div class="card card-primary card-outline" style="border-top-color: #29873C;">
               <div class="card-body box-profile">
+                <div class="text-center">
+
+                </div>
+
+                <h3 class="profile-username text-center" th:text="${name}"> </h3>
+
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Name</b> <a class="float-right" style="color: #29873C;"></a>
+                    <b>Name</b> <a class="float-right" style="color: #29873C;" th:text="${name}"></a>
                   </li>
                   <li class="list-group-item">
-                    <b>Username</b> <a class="float-right" style="color: #29873C;">hondoe</a>
+                    <b>Username</b> <a class="float-right" style="color: #29873C;" th:text="${client.username}"></a>
                   </li>
                   <li class="list-group-item">
-                    <b>Address</b> <a class="float-right" style="color: #29873C;">Rua das Cores, nº 12</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Review</b> <a class="float-right" style="color: #29873C;">4.5</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Email</b> <a class="float-right" style="color: #29873C;">doe@gmail.com</a>
+                    <b>Address</b> <a class="float-right" style="color: #29873C;" th:text="${client.address}"></a>
                   </li>
                 
                   <li class="list-group-item">
-                    <b>Status</b> <a class="float-right" style="color: #29873C;">Offline</a>
+                    <b>Email</b> <a class="float-right" style="color: #29873C;" th:text="${client.email}"> </a>
                   </li>
+              
                 </ul>
               </div>
             </div>
@@ -135,7 +136,6 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <th>
                       <tr>
                         <td> </td>
                       </tr>

@@ -24,7 +24,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../../index.html" class="brand-link">
-      <img  th:src="@{/img/logo2.png}" alt="AdminLTE Logo" class="brand-image " style="opacity: .8">
+      <img  th:src="@{/img/logo2.png}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
+
       <span class="brand-text font-weight-light">24Meds</span>
     </a>
 
@@ -40,7 +41,7 @@
                with font-awesome or any other icon font library -->
           
                <li class="nav-item">
-                <a th:href="@{index}" class="nav-link">
+                <a href="../index"  class="nav-link">
                   <i class="nav-icon fas fa-building" style='font-size:24px'></i>
                   <p>
                     Store
@@ -49,7 +50,7 @@
               </li>
           
           <li class="nav-item">
-            <a th:href="@{profile}" class="nav-link">
+            <a  href="../profile"   class="nav-link">
               <i class='nav-icon fas fa-portrait' style='font-size:24px'></i>
               <p>
                 Profile 
@@ -57,7 +58,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a th:href="@{cart}" class="nav-link">
+            <a href="../cart"  class="nav-link">
               <i class="fa fa-shopping-cart" style="font-size:24px"></i>
               <p>
                 Shopping cart
@@ -112,13 +113,6 @@
                   </li>
            
                 </ul>
-                <div style=" display: flex;justify-content: center;">
-                    <div class="counter" >
-                        <div class="btn" >+</div>
-                        <div class="count">2</div>
-                        <div class="btn" >-</div>
-                    </div>
-                </div>
               </div><!-- /.card-body -->
             </div>
             <!-- /.card -->
