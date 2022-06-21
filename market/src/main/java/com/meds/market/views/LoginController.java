@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.meds.market.exception.ResourceNotFoundException;
-
+import com.meds.market.model.Cart;
 import com.meds.market.model.Client;
 import com.meds.market.model.LoginCredentials;
 import com.meds.market.services.ClientService;
@@ -32,7 +32,6 @@ public class LoginController {
 
   @Autowired
   ClientService clientsv;
-
 
   
   @ModelAttribute("loginCredentials")
@@ -61,22 +60,15 @@ public class LoginController {
   public RedirectView loginChecking(@ModelAttribute LoginCredentials loginCredentials, Model model)
       throws NumberFormatException, ResourceNotFoundException {
     HttpSession session = httpSessionFactory.getObject();
-    log.info("SESSION : "+  session);
+    
     String email = loginCredentials.getEmail();
-    log.info("email " + email);
     String password = loginCredentials.getPassword();
     Client client = clientsv.getClientByEmail(email);
-    log.info("ID::::::::::" + client.getId());
-    log.info("Client::::::::::" + client.getEmail());
-    log.info("Client::::::::::" + client.getPassword());
-    log.info("password introduzida::::::::::" + password);
-    log.info("são iguais?"  + password.equals(client.getPassword()));
-
 
     if (client.getPassword().equals(password)) {
       session.setAttribute("email", email);
       session.setAttribute("id_client", client.getId());
-      System.out.println("ratisse");
+      session.setAttribute("cart", new Cart(client));
       return new RedirectView("index");
     }
     else{

@@ -32,7 +32,7 @@ public class IndexController {
 
     @Autowired 
     ClientService clientsv;
-    
+      
     @Autowired 
     ProductService productService;
 
@@ -45,13 +45,12 @@ public class IndexController {
 
       model.addAttribute("id_client", client.getId());
 
-
-
       List<Product> products = productService.getAllProducts();
       
       model.addAttribute("id_client", client.getId());
       ModelAndView modelAndView = new ModelAndView();
       modelAndView.addObject("products", products);
+      session.setAttribute("products", products);
       modelAndView.setViewName("index");
       return modelAndView;
     }

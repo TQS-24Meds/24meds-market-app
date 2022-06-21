@@ -23,8 +23,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index.html" class="brand-link">
-      <img src="../static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a th:href="@{index}" class="brand-link">
+      <img th:src="@{img/logo2.png}" alt="AdminLTE Logo" class="brand-image " style="opacity: .8">
       <span class="brand-text font-weight-light">24Meds</span>
     </a>
 
@@ -40,7 +40,7 @@
                with font-awesome or any other icon font library -->
           
                <li class="nav-item">
-                <a href="index.html" class="nav-link">
+                <a th:href="@{index}" class="nav-link">
                   <i class="nav-icon fas fa-building" style='font-size:24px'></i>
                   <p>
                     Store
@@ -49,7 +49,7 @@
               </li>
           
           <li class="nav-item">
-            <a href="profile.html" class="nav-link">
+            <a th:href="@{profile}" class="nav-link">
               <i class='nav-icon fas fa-portrait' style='font-size:24px'></i>
               <p>
                 Profile 
@@ -57,7 +57,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="shopping_cart.html" class="nav-link">
+            <a th:href="@{cart}" class="nav-link">
               <i class="fa fa-shopping-cart" style="font-size:24px"></i>
               <p>
                 Shopping cart
@@ -90,18 +90,10 @@
             <!-- Profile Image -->
             <div class="card card-primary card-outline" style="border-top-color: #29873C;">
               <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
-                       src="../static/img/user1-128x128.jpg"
-                       alt="User profile picture">
-                </div>
-
-                <h3 class="profile-username text-center">John Doe</h3>
-
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Name</b> <a class="float-right" style="color: #29873C;">John Doe</a>
+                    <b>Name</b> <a class="float-right" style="color: #29873C;"></a>
                   </li>
                   <li class="list-group-item">
                     <b>Username</b> <a class="float-right" style="color: #29873C;">hondoe</a>
@@ -143,7 +135,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <th:block th:each="">
+                    <th>
                       <tr>
                         <td> </td>
                       </tr>

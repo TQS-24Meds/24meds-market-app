@@ -27,7 +27,7 @@ public class ProfController {
     @GetMapping("/profile")
     public ModelAndView profile(Model model) throws NumberFormatException, ResourceNotFoundException {
       HttpSession session = httpSessionFactory.getObject();
-      String clientmail= (String.valueOf(session.getAttribute("email_client"))); //not sure qual é o nome do ciusi
+      String clientmail= (String.valueOf(session.getAttribute("email")));
       Client client = clientsv.getClientByEmail(clientmail);
   
 
