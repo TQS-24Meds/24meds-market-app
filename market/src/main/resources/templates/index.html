@@ -35,9 +35,10 @@
     localStorage.setItem('productPrice', productPrice)
     localStorage.setItem('productBrand', productBrand)
     localStorage.setItem('productPhoto', 'img/products/'+productId+'.jpg')
-    
-    alert("Item sucessfully added to cart!");
-  
+
+    let amount = document.getElementById("amount").value;
+    localStorage.setItem('productAmount', amount)
+
     $.ajax({
       type : "POST",
       url : "cart",
@@ -49,14 +50,12 @@
       }
     });
 
-    
-  }
-  
 
+  }
   </script>
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" style="background-color: #f4f6f9">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -89,17 +88,15 @@
       <nav class="mt-2">
 
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"  >
-          
-        
-               <li class="nav-item">
-                <a th:href="@{index}" class="nav-link">
-                  <i class="nav-icon fas fa-building" style='font-size:24px'></i>
-                  <p>
-                    Store
-                  </p>
-                </a>
-              </li>
-          
+          <li class="nav-item">
+            <a th:href="@{index}" class="nav-link">
+              <i class="nav-icon fas fa-building" style='font-size:24px'></i>
+              <p>
+                Store
+              </p>
+            </a>
+          </li>
+    
           <li class="nav-item">
             <a th:href="@{profile}" class="nav-link">
               <i class='nav-icon fas fa-portrait' style='font-size:24px'></i>
@@ -144,24 +141,24 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row" >
-          <div class="col-md-3 col-6">
             <!-- small box -->
-            <div class="small-box bg" th:each="product:${products}">
+            <div class="small-box bg" th:each="product:${products}" style="margin: 20px">
               <div class="inner">
                 <div class="inner">
                   <h3 th:text="${product.name}" ></h3>
                   <p th:text="${product.price} + '€'"></p> 
                 </div>
-                  <img th:src="'img/products/'+${product.id}+'.jpg'" width="200">
+                  <img th:src="'img/products/'+${product.id}+'.jpg'" width="200" height="200">
               </div>
-              <a href="#" class="small-box-footer" style="background-color:#29873C" th:attr="onclick=|addProductEvent('${product.name}', '${product.price}', '${product.brand}', '${product.id}')|">Add to cart <i class="fa fa-shopping-cart"></i></a>
+              <div class="quantity" style="text-align:center">
+                <input style="width: 15%;" id="amount" type="number" value="1" min="1" class="quantity-field">
+              </div>
+              <a class="small-box-footer" style="background-color:#29873C" th:attr="onclick=|addProductEvent('${product.name}', '${product.price}', '${product.brand}', '${product.id}' )|">Add to cart <i class="fa fa-shopping-cart"></i></a>
               <a th:href="@{'product/' + ${product.id}}" class="small-box-footer" style="color:#29873C"> Information <i class="fas fa-info-circle"></i></a>
             </div> 
           </div>
-          <!-- ./col -->
-        </div>
         <!-- /.row -->
-        <!-- Main row -->
+        <!-- Main row --> 
     </section>
   </div>
   <!-- /.content-wrapper -->
