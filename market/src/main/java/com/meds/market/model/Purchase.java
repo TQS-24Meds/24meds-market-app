@@ -1,5 +1,6 @@
 package com.meds.market.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -19,7 +20,7 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 @Table(name = "purchase")
-public class Purchase {
+public class Purchase implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

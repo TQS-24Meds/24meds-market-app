@@ -1,8 +1,10 @@
 package com.meds.market.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -14,18 +16,21 @@ import lombok.*;
 @Setter
 @ToString
 @Table(name = "delivery")
-public class Delivery {
+public class Delivery implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    
     @Column(name = "id_delivery")
     private int id;
     
     @CreationTimestamp
+    @NotBlank(message = "ts is mandatory")
     @Column(name = "timestamp")
     private Date timestamp; 
 
-    @OneToOne           
+    @OneToOne   
+    @NotBlank(message = "id is mandatory")
     @JoinColumn(name = "id_purchase", nullable = false)
     private Purchase client_purchase;
 
@@ -38,4 +43,5 @@ public class Delivery {
         this.timestamp = new Date();
     }
 
+    public Delivery(){}
 }
