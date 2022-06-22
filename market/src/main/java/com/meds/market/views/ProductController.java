@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.meds.market.exception.ResourceNotFoundException;
 
@@ -60,7 +59,7 @@ public class ProductController {
     @GetMapping("/product/{productid}/description")
     public ModelAndView getProductDescriptionById(@PathVariable(value="productId") int productid, Model model) throws NumberFormatException, ResourceNotFoundException {
         HttpSession session = httpSessionFactory.getObject();
-        String clientmail= (String.valueOf(session.getAttribute("email_client"))); //not sure qual é o nome do ciusi
+        String clientmail= (String.valueOf(session.getAttribute("email_client")));
         Client client = clientsv.getClientByEmail(clientmail);
         Product product = productService.getProduct(productid);
         model.addAttribute("name",product.getName());
@@ -70,8 +69,6 @@ public class ProductController {
         model.addAttribute("price",product.getPrice());
         model.addAttribute("tags",product.getTags());
       
-        Cart cart = client.getCart();
-
         ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.setViewName("product_description");

@@ -56,7 +56,6 @@ public class CartService {
         return map;
     }
 
-
     public Float getCartTotalPrice(Cart cart){
 
         float totalPrice = 0;

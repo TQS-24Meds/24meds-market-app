@@ -37,7 +37,7 @@ public class Pharmacy {
     // @JsonIgnore
     // private List<Product> product_list;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_coordinates")
     private Coordinates store_location;;
 
