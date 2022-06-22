@@ -1,6 +1,8 @@
 package com.meds.market.apiComms;
 
 import lombok.extern.log4j.Log4j2;
+
+import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +22,8 @@ import com.meds.market.model.ServerPurchaseModel;
 public class ISpecApiImpl implements ISpecApi {
 
     @Autowired
+    public RestTemplate restTemplate() { return new RestTemplateBuilder().build(); }
+
     private RestTemplate restTemplate;
 
     private static final String HOST = "http://localhost:8080/store";
@@ -54,10 +58,5 @@ public class ISpecApiImpl implements ISpecApi {
 
         }
     
-    }
-
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplateBuilder().build();
     }
 }

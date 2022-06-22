@@ -8,5 +8,4 @@ public interface ISpecApi {
 
     Long newOrder(Delivery purchase);
 
-
 }

@@ -59,7 +59,6 @@ public class Purchase implements Serializable{
         this.pay_type = pay_type;
     }
 
-    @Autowired
     public Purchase(Client client, float total_price, PayTypeEnum pay_type, String qr_code) {
         this.client = client;
         this.timestamp = new Date();

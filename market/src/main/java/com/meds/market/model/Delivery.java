@@ -34,7 +34,6 @@ public class Delivery implements Serializable{
     @JoinColumn(name = "id_purchase", nullable = false)
     private Purchase client_purchase;
 
-    // what
     @Column(name = "storeuid", nullable = false) 
     private int storeuid; 
 
