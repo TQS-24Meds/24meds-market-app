@@ -44,8 +44,6 @@ public class CartController {
       Client client = clientsv.getClientByEmail(clientmail);
       Cart cart = client.getCart(); 
 
-      log.info("CART: " + cart);
-
       ModelAndView modelAndView = new ModelAndView();
       session.setAttribute("cart", cart);
       modelAndView.setViewName("cart");
@@ -62,7 +60,6 @@ public class CartController {
         List<CartStock> stocks = new ArrayList<>();
         stocks.add(cartStock);
         cart.setCartStocks(stocks);
-        log.info("is this okay? " + cart);
       }
     }  */
     

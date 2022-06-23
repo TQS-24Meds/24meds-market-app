@@ -1,5 +1,6 @@
 package com.meds.market.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -18,7 +19,7 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 @Table(name = "product")
-public class Product {
+public class Product implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
