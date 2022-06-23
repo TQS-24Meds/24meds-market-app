@@ -1,4 +1,5 @@
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TQS-24Meds_24meds-market-app&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=TQS-24Meds_24meds-market-app)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=TQS-24Meds_24meds-market-app&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=TQS-24Meds_24meds-market-app) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=TQS-24Meds_24meds-market-app&metric=bugs)](https://sonarcloud.io/summary/new_code?id=TQS-24Meds_24meds-market-app) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=TQS-24Meds_24meds-market-app&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=TQS-24Meds_24meds-market-app) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=TQS-24Meds_24meds-market-app&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=TQS-24Meds_24meds-market-app)
+
 
 # 24Meds - Specific service app
 
